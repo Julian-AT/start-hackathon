@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { Marquee } from "@/components/ui/marquee";
+
 type Partner = {
   name: string;
   src: string;
@@ -12,38 +14,31 @@ const partners: Partner[] = [
   { name: "HOIV", src: "/partners/hoiv.webp" },
 ];
 
-function PartnerTrack({ ariaHidden }: { ariaHidden: boolean }) {
-  return (
-    <div className="flex shrink-0 items-center gap-16" aria-hidden={ariaHidden}>
-      {partners.map((p) => (
-        <div key={p.name} className="flex h-12 shrink-0 items-center">
-          <Image
-            src={p.src}
-            alt={ariaHidden ? "" : p.name}
-            width={200}
-            height={48}
-            className="h-12 w-auto object-contain"
-            unoptimized
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export function PartnerMarquee() {
   return (
-    <div className="pt-20 pb-20 lg:pt-24 lg:pb-24">
-      <div className="container mx-auto mb-10 px-4 text-center lg:mb-12">
-        <p className="b3 text-dark-3 tracking-wider uppercase">Backed by builders, for builders</p>
-      </div>
-      <div className="marquee-mask relative w-full overflow-hidden">
-        <div className="animate-marquee flex w-max gap-16" aria-label="Partner carousel">
-          <PartnerTrack ariaHidden={false} />
-          <PartnerTrack ariaHidden={true} />
-          <PartnerTrack ariaHidden={true} />
+    <section className="py-14">
+      <div className="container mx-auto px-4 md:px-8">
+        <p className="b3 text-dark-3 text-center tracking-wider uppercase">
+          Backed by builders, for builders
+        </p>
+        <div className="relative mt-6">
+          <Marquee className="max-w-full [--duration:40s]">
+            {partners.map((p) => (
+              <Image
+                key={p.name}
+                src={p.src}
+                alt={p.name}
+                width={200}
+                height={40}
+                className="h-10 w-auto object-contain"
+                unoptimized
+              />
+            ))}
+          </Marquee>
+          <div className="from-light-1 pointer-events-none absolute inset-y-0 left-0 h-full w-1/3 bg-gradient-to-r" />
+          <div className="from-light-1 pointer-events-none absolute inset-y-0 right-0 h-full w-1/3 bg-gradient-to-l" />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
