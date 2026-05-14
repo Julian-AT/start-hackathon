@@ -5,14 +5,14 @@
 
 /*
  * Opennote.com clone — design tokens extracted from live site
- * Body bg: rgb(255, 253, 248) (light-1) — warm off-white
+ * Body bg: #efefef (light-1) — neutral light gray
  * Body text: rgb(25, 25, 25) (dark-1)
  * Heading serif: IowanOld (40-48px display)
  * Body sans: SuisseIntl
  */
 @theme inline {
   /* Color palette — extracted via getComputedStyle on .bg-* / .text-* utilities */
-  --color-light-1: rgb(255, 253, 248);
+  --color-light-1: #efefef;
   --color-light-2: rgb(245, 243, 238);
   --color-light-3: rgb(235, 233, 228);
 
@@ -56,7 +56,7 @@
 }
 
 :root {
-  --background: rgb(255, 253, 248);
+  --background: #efefef;
   --foreground: rgb(25, 25, 25);
 }
 

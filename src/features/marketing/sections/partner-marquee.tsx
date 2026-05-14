@@ -1,27 +1,30 @@
+import Image from "next/image";
+
 type Partner = {
   name: string;
-  role: string;
+  src: string;
 };
 
 const partners: Partner[] = [
-  { name: "fonio.ai", role: "Case partner" },
-  { name: "techbold", role: "Case partner" },
-  { name: "Lovable", role: "Tool partner" },
-  { name: "HOIV", role: "Venue partner" },
+  { name: "fonio.ai", src: "/partners/fonio.png" },
+  { name: "techbold", src: "/partners/techbold.png" },
+  { name: "Lovable", src: "/partners/lovable.svg" },
+  { name: "HOIV", src: "/partners/hoiv.webp" },
 ];
 
 function PartnerTrack({ ariaHidden }: { ariaHidden: boolean }) {
   return (
     <div className="flex shrink-0 items-center gap-16" aria-hidden={ariaHidden}>
       {partners.map((p) => (
-        <div key={p.name} className="flex shrink-0 items-baseline gap-3 grayscale">
-          <span
-            className="text-dark-1 text-2xl leading-none font-semibold lg:text-[1.625rem]"
-            style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
-          >
-            {p.name}
-          </span>
-          <span className="b3 text-dark-3 leading-none tracking-wider uppercase">{p.role}</span>
+        <div key={p.name} className="flex h-12 shrink-0 items-center">
+          <Image
+            src={p.src}
+            alt={ariaHidden ? "" : p.name}
+            width={200}
+            height={48}
+            className="h-12 w-auto object-contain grayscale"
+            unoptimized
+          />
         </div>
       ))}
     </div>
