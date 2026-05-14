@@ -65,6 +65,7 @@ A website is not a screenshot — it's a living thing. Elements move, change, ap
 For every element, extract its **appearance** (exact computed CSS via `getComputedStyle()`) AND its **behavior** (what changes, what triggers the change, and how the transition happens). Not "it looks like 16px" — extract the actual computed value. Not "the nav changes on scroll" — document the exact trigger (scroll position, IntersectionObserver threshold, viewport intersection), the before and after states (both sets of CSS values), and the transition (duration, easing, CSS transition vs. JS-driven vs. CSS `animation-timeline`).
 
 Examples of behaviors to watch for — these are illustrative, not exhaustive. The page may do things not on this list, and you must catch those too:
+
 - A navbar that shrinks, changes background, or gains a shadow after scrolling past a threshold
 - Elements that animate into view when they enter the viewport (fade-up, slide-in, stagger delays)
 - Sections that snap into place on scroll (`scroll-snap-type`)
@@ -83,6 +84,7 @@ Examples of behaviors to watch for — these are illustrative, not exhaustive. T
 This is the single most expensive mistake in cloning: building a click-based UI when the original is scroll-driven, or vice versa. Before writing any builder prompt for an interactive section, you must definitively answer: **Is this section driven by clicks, scrolls, hovers, time, or some combination?**
 
 How to determine this:
+
 1. **Don't click first.** Scroll through the section slowly and observe if things change on their own as you scroll.
 2. If they do, it's scroll-driven. Extract the mechanism: `IntersectionObserver`, `scroll-snap`, `position: sticky`, `animation-timeline`, or JS scroll listeners.
 3. If nothing changes on scroll, THEN click/hover to test for click/hover-driven interactivity.
@@ -95,12 +97,14 @@ A section with a sticky sidebar and scrolling content panels is fundamentally di
 Many components have multiple visual states — a tab bar shows different cards per tab, a header looks different at scroll position 0 vs 100, a card has hover effects. You must extract ALL states, not just whatever is visible on page load.
 
 For tabbed/stateful content:
+
 - Click each tab/button via browser MCP
 - Extract the content, images, and card data for EACH state
 - Record which content belongs to which state
 - Note the transition animation between states (opacity, slide, fade, etc.)
 
 For scroll-dependent elements:
+
 - Capture computed styles at scroll position 0 (initial state)
 - Scroll past the trigger threshold and capture computed styles again (scrolled state)
 - Diff the two to identify exactly which CSS properties change
@@ -122,11 +126,13 @@ Every builder agent must verify `npx tsc --noEmit` passes before finishing. Afte
 Navigate to the target URL with browser MCP.
 
 ### Screenshots
+
 - Take **full-page screenshots** at desktop (1440px) and mobile (390px) viewports
 - Save to `docs/design-references/` with descriptive names
 - These are your master reference — builders will receive section-specific crops/screenshots later
 
 ### Global Extraction
+
 Extract these from the page before doing anything else:
 
 **Fonts** — Inspect `<link>` tags for Google Fonts or self-hosted fonts. Check computed `font-family` on key elements (headings, body, code, labels). Document every family, weight, and style actually used. Configure them in `src/app/layout.tsx` using `next/font/google` or `next/font/local`.
@@ -142,6 +148,7 @@ Extract these from the page before doing anything else:
 This is a dedicated pass AFTER screenshots and BEFORE anything else. Its purpose is to discover every behavior on the page — many of which are invisible in a static screenshot.
 
 **Scroll sweep:** Scroll the page slowly from top to bottom via browser MCP. At each section, pause and observe:
+
 - Does the header change appearance? Record the scroll position where it triggers.
 - Do elements animate into view? Record which ones and the animation type.
 - Does a sidebar or tab indicator auto-switch as you scroll? Record the mechanism.
@@ -149,15 +156,18 @@ This is a dedicated pass AFTER screenshots and BEFORE anything else. Its purpose
 - Is there a smooth scroll library active? Check for non-native scroll behavior.
 
 **Click sweep:** Click every element that looks interactive:
+
 - Every button, tab, pill, link, card
 - Record what happens: does content change? Does a modal open? Does a dropdown appear?
 - For tabs/pills: click EACH ONE and record the content that appears for each state
 
 **Hover sweep:** Hover over every element that might have hover states:
+
 - Buttons, cards, links, images, nav items
 - Record what changes: color, scale, shadow, underline, opacity
 
 **Responsive sweep:** Test at 3 viewport widths via browser MCP:
+
 - Desktop: 1440px
 - Tablet: 768px
 - Mobile: 390px
@@ -166,7 +176,9 @@ This is a dedicated pass AFTER screenshots and BEFORE anything else. Its purpose
 Save all findings to `docs/research/BEHAVIORS.md`. This is your behavior bible — reference it when writing every component spec.
 
 ### Page Topology
+
 Map out every distinct section of the page from top to bottom. Give each a working name. Document:
+
 - Their visual order
 - Which are fixed/sticky overlays vs. flow content
 - The overall page layout (scroll container, column structure, z-index layers)
@@ -193,34 +205,45 @@ Use browser MCP to enumerate all assets on the page:
 ```javascript
 // Run this via browser MCP to discover all assets
 JSON.stringify({
-  images: [...document.querySelectorAll('img')].map(img => ({
+  images: [...document.querySelectorAll("img")].map((img) => ({
     src: img.src || img.currentSrc,
     alt: img.alt,
     width: img.naturalWidth,
     height: img.naturalHeight,
     // Include parent info to detect layered compositions
     parentClasses: img.parentElement?.className,
-    siblings: img.parentElement ? [...img.parentElement.querySelectorAll('img')].length : 0,
+    siblings: img.parentElement ? [...img.parentElement.querySelectorAll("img")].length : 0,
     position: getComputedStyle(img).position,
-    zIndex: getComputedStyle(img).zIndex
+    zIndex: getComputedStyle(img).zIndex,
   })),
-  videos: [...document.querySelectorAll('video')].map(v => ({
-    src: v.src || v.querySelector('source')?.src,
+  videos: [...document.querySelectorAll("video")].map((v) => ({
+    src: v.src || v.querySelector("source")?.src,
     poster: v.poster,
     autoplay: v.autoplay,
     loop: v.loop,
-    muted: v.muted
+    muted: v.muted,
   })),
-  backgroundImages: [...document.querySelectorAll('*')].filter(el => {
-    const bg = getComputedStyle(el).backgroundImage;
-    return bg && bg !== 'none';
-  }).map(el => ({
-    url: getComputedStyle(el).backgroundImage,
-    element: el.tagName + '.' + el.className?.split(' ')[0]
+  backgroundImages: [...document.querySelectorAll("*")]
+    .filter((el) => {
+      const bg = getComputedStyle(el).backgroundImage;
+      return bg && bg !== "none";
+    })
+    .map((el) => ({
+      url: getComputedStyle(el).backgroundImage,
+      element: el.tagName + "." + el.className?.split(" ")[0],
+    })),
+  svgCount: document.querySelectorAll("svg").length,
+  fonts: [
+    ...new Set(
+      [...document.querySelectorAll("*")]
+        .slice(0, 200)
+        .map((el) => getComputedStyle(el).fontFamily),
+    ),
+  ],
+  favicons: [...document.querySelectorAll('link[rel*="icon"]')].map((l) => ({
+    href: l.href,
+    sizes: l.sizes?.toString(),
   })),
-  svgCount: document.querySelectorAll('svg').length,
-  fonts: [...new Set([...document.querySelectorAll('*')].slice(0, 200).map(el => getComputedStyle(el).fontFamily))],
-  favicons: [...document.querySelectorAll('link[rel*="icon"]')].map(l => ({ href: l.href, sizes: l.sizes?.toString() }))
 });
 ```
 
@@ -241,28 +264,87 @@ For each section, use browser MCP to extract everything:
 ```javascript
 // Per-component extraction — run via browser MCP
 // Replace SELECTOR with the actual CSS selector for the component
-(function(selector) {
+(function (selector) {
   const el = document.querySelector(selector);
-  if (!el) return JSON.stringify({ error: 'Element not found: ' + selector });
+  if (!el) return JSON.stringify({ error: "Element not found: " + selector });
   const props = [
-    'fontSize','fontWeight','fontFamily','lineHeight','letterSpacing','color',
-    'textTransform','textDecoration','backgroundColor','background',
-    'padding','paddingTop','paddingRight','paddingBottom','paddingLeft',
-    'margin','marginTop','marginRight','marginBottom','marginLeft',
-    'width','height','maxWidth','minWidth','maxHeight','minHeight',
-    'display','flexDirection','justifyContent','alignItems','gap',
-    'gridTemplateColumns','gridTemplateRows',
-    'borderRadius','border','borderTop','borderBottom','borderLeft','borderRight',
-    'boxShadow','overflow','overflowX','overflowY',
-    'position','top','right','bottom','left','zIndex',
-    'opacity','transform','transition','cursor',
-    'objectFit','objectPosition','mixBlendMode','filter','backdropFilter',
-    'whiteSpace','textOverflow','WebkitLineClamp'
+    "fontSize",
+    "fontWeight",
+    "fontFamily",
+    "lineHeight",
+    "letterSpacing",
+    "color",
+    "textTransform",
+    "textDecoration",
+    "backgroundColor",
+    "background",
+    "padding",
+    "paddingTop",
+    "paddingRight",
+    "paddingBottom",
+    "paddingLeft",
+    "margin",
+    "marginTop",
+    "marginRight",
+    "marginBottom",
+    "marginLeft",
+    "width",
+    "height",
+    "maxWidth",
+    "minWidth",
+    "maxHeight",
+    "minHeight",
+    "display",
+    "flexDirection",
+    "justifyContent",
+    "alignItems",
+    "gap",
+    "gridTemplateColumns",
+    "gridTemplateRows",
+    "borderRadius",
+    "border",
+    "borderTop",
+    "borderBottom",
+    "borderLeft",
+    "borderRight",
+    "boxShadow",
+    "overflow",
+    "overflowX",
+    "overflowY",
+    "position",
+    "top",
+    "right",
+    "bottom",
+    "left",
+    "zIndex",
+    "opacity",
+    "transform",
+    "transition",
+    "cursor",
+    "objectFit",
+    "objectPosition",
+    "mixBlendMode",
+    "filter",
+    "backdropFilter",
+    "whiteSpace",
+    "textOverflow",
+    "WebkitLineClamp",
   ];
   function extractStyles(element) {
     const cs = getComputedStyle(element);
     const styles = {};
-    props.forEach(p => { const v = cs[p]; if (v && v !== 'none' && v !== 'normal' && v !== 'auto' && v !== '0px' && v !== 'rgba(0, 0, 0, 0)') styles[p] = v; });
+    props.forEach((p) => {
+      const v = cs[p];
+      if (
+        v &&
+        v !== "none" &&
+        v !== "normal" &&
+        v !== "auto" &&
+        v !== "0px" &&
+        v !== "rgba(0, 0, 0, 0)"
+      )
+        styles[p] = v;
+    });
     return styles;
   }
   function walk(element, depth) {
@@ -270,16 +352,30 @@ For each section, use browser MCP to extract everything:
     const children = [...element.children];
     return {
       tag: element.tagName.toLowerCase(),
-      classes: element.className?.toString().split(' ').slice(0, 5).join(' '),
-      text: element.childNodes.length === 1 && element.childNodes[0].nodeType === 3 ? element.textContent.trim().slice(0, 200) : null,
+      classes: element.className?.toString().split(" ").slice(0, 5).join(" "),
+      text:
+        element.childNodes.length === 1 && element.childNodes[0].nodeType === 3
+          ? element.textContent.trim().slice(0, 200)
+          : null,
       styles: extractStyles(element),
-      images: element.tagName === 'IMG' ? { src: element.src, alt: element.alt, naturalWidth: element.naturalWidth, naturalHeight: element.naturalHeight } : null,
+      images:
+        element.tagName === "IMG"
+          ? {
+              src: element.src,
+              alt: element.alt,
+              naturalWidth: element.naturalWidth,
+              naturalHeight: element.naturalHeight,
+            }
+          : null,
       childCount: children.length,
-      children: children.slice(0, 20).map(c => walk(c, depth + 1)).filter(Boolean)
+      children: children
+        .slice(0, 20)
+        .map((c) => walk(c, depth + 1))
+        .filter(Boolean),
     };
   }
   return JSON.stringify(walk(el, 0), null, 2);
-})('SELECTOR');
+})("SELECTOR");
 ```
 
 3. **Extract multi-state styles** — for any element with multiple states (scroll-triggered, hover, active tab), capture BOTH states:
@@ -311,32 +407,38 @@ For each section (or sub-component, if you're breaking it up), create a spec fil
 # <ComponentName> Specification
 
 ## Overview
+
 - **Target file:** `src/components/<ComponentName>.tsx`
 - **Screenshot:** `docs/design-references/<screenshot-name>.png`
 - **Interaction model:** <static | click-driven | scroll-driven | time-driven>
 
 ## DOM Structure
+
 <Describe the element hierarchy — what contains what>
 
 ## Computed Styles (exact values from getComputedStyle)
 
 ### Container
+
 - display: ...
 - padding: ...
 - maxWidth: ...
 - (every relevant property with exact values)
 
 ### <Child element 1>
+
 - fontSize: ...
 - color: ...
 - (every relevant property)
 
 ### <Child element N>
+
 ...
 
 ## States & Behaviors
 
 ### <Behavior name, e.g., "Scroll-triggered floating mode">
+
 - **Trigger:** <exact mechanism — scroll position 50px, IntersectionObserver rootMargin "-30% 0px", click on .tab-button, hover>
 - **State A (before):** maxWidth: 100vw, boxShadow: none, borderRadius: 0
 - **State B (after):** maxWidth: 1200px, boxShadow: 0 4px 20px rgba(0,0,0,0.1), borderRadius: 16px
@@ -344,28 +446,34 @@ For each section (or sub-component, if you're breaking it up), create a spec fil
 - **Implementation approach:** <CSS transition + scroll listener | IntersectionObserver | CSS animation-timeline | etc.>
 
 ### Hover states
+
 - **<Element>:** <property>: <before> → <after>, transition: <value>
 
 ## Per-State Content (if applicable)
 
 ### State: "Featured"
+
 - Title: "..."
 - Subtitle: "..."
 - Cards: [{ title, description, image, link }, ...]
 
 ### State: "Productivity"
+
 - Title: "..."
 - Cards: [...]
 
 ## Assets
+
 - Background image: `public/images/<file>.webp`
 - Overlay image: `public/images/<file>.png`
 - Icons used: <ArrowIcon>, <SearchIcon> from icons.tsx
 
 ## Text Content (verbatim)
+
 <All text content, copy-pasted from the live site>
 
 ## Responsive Behavior
+
 - **Desktop (1440px):** <layout description>
 - **Tablet (768px):** <what changes — e.g., "maintains 2-column, gap reduces to 16px">
 - **Mobile (390px):** <what changes — e.g., "stacks to single column, images full-width">
@@ -383,6 +491,7 @@ Based on complexity, dispatch builder agent(s) in worktree(s):
 **Complex section** (3+ distinct sub-components): Break it up. One agent per sub-component, plus one agent for the section wrapper that imports them. Sub-component builders go first since the wrapper depends on them.
 
 **What every builder agent receives:**
+
 - The full contents of its component spec file (inline in the prompt — don't say "go read the spec file")
 - Path to the section screenshot in `docs/design-references/`
 - Which shared components to import (`icons.tsx`, `cn()`, shadcn primitives)
@@ -395,6 +504,7 @@ Based on complexity, dispatch builder agent(s) in worktree(s):
 ### Step 4: Merge
 
 As builder agents complete their work:
+
 - Merge their worktree branches into main
 - You have full context on what each agent built, so resolve any conflicts intelligently
 - After each merge, verify the build still passes: `npm run build`
@@ -464,6 +574,7 @@ These are lessons from previous failed clones — each one cost hours of rework:
 ## Completion
 
 When done, report:
+
 - Total sections built
 - Total components created
 - Total spec files written (should match components)
