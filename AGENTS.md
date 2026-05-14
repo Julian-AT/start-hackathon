@@ -1,74 +1,44 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# Agent rules
 
-# This is NOT the Next.js you know
+Marketing site for START Hack Vienna '26. Single Next.js 16 App Router project, server-rendered, statically deployed. No auth, no CMS, no API routes.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+## Stack
 
-<!-- END:nextjs-agent-rules -->
+- Next.js 16 (App Router), React 19, TypeScript strict
+- Tailwind CSS v4 (CSS-first config in `src/app/globals.css`)
+- shadcn/ui primitives on top of `@base-ui/react`
+- `next/font/local` for self-hosted fonts
 
-# Website Reverse-Engineer Template
+This is **not** the Next.js you might know — APIs and conventions have changed. When in doubt, read the relevant guide in `node_modules/next/dist/docs/` before writing code.
 
-## What This Is
-
-A reusable template for reverse-engineering any website into a clean, modern Next.js codebase using AI coding agents. The Next.js + shadcn/ui + Tailwind v4 base is pre-scaffolded — just run `/clone-website <url1> [<url2> ...]`.
-
-## Tech Stack
-
-- **Framework:** Next.js 16 (App Router, React 19, TypeScript strict)
-- **UI:** shadcn/ui (Radix primitives, Tailwind CSS v4, `cn()` utility)
-- **Icons:** Lucide React (default — will be replaced/supplemented by extracted SVGs)
-- **Styling:** Tailwind CSS v4 with oklch design tokens
-- **Deployment:** Vercel
-
-## Commands
-
-- `npm run dev` — Start dev server
-- `npm run build` — Production build
-- `npm run lint` — ESLint check
-- `npm run typecheck` — TypeScript check
-- `npm run check` — Run lint + typecheck + build
-
-## Code Style
-
-- TypeScript strict mode, no `any`
-- Named exports, PascalCase components, camelCase utils
-- Tailwind utility classes, no inline styles
-- 2-space indentation
-- Responsive: mobile-first
-
-## Design Principles
-
-- **Pixel-perfect emulation** — match the target's spacing, colors, typography exactly
-- **No personal aesthetic changes during emulation phase** — match 1:1 first, customize later
-- **Real content** — use actual text and assets from the target site, not placeholders
-- **Beauty-first** — every pixel matters
-
-## Project Structure
+## Structure
 
 ```
 src/
-  app/              # Next.js routes
-  components/       # React components
-    ui/             # shadcn/ui primitives
-    icons.tsx       # Extracted SVG icons as React components
-  lib/
-    utils.ts        # cn() utility (shadcn)
-  types/            # TypeScript interfaces
-  hooks/            # Custom React hooks
-public/
-  images/           # Downloaded images from target site
-  videos/           # Downloaded videos from target site
-  seo/              # Favicons, OG images, webmanifest
-docs/
-  research/         # Inspection output (design tokens, components, layout)
-  design-references/ # Screenshots and visual references
-scripts/            # Asset download scripts
+  app/                              # routes, layout, metadata
+  components/ui/                    # shadcn primitives
+  features/marketing/
+    config.ts                       # APPLY_URL + nav links (single source)
+    icons.tsx                       # extracted SVG icon components
+    sections/                       # one file per landing section
+  lib/utils.ts                      # cn()
+public/                             # fonts + images
 ```
 
-## MOST IMPORTANT NOTES
+Don't create `services/`, `providers/`, `hooks/`, or `types/` until something actually needs them. Don't introduce auth, a CMS, or runtime data fetching libraries.
 
-- When launching Claude Code agent teams, ALWAYS have each teammate work in their own worktree branch and merge everyone's work at the end, resolving any merge conflicts smartly since you are basically serving the orchestrator role and have full context to our goals, work given, work achieved, and desired outcomes.
-- After editing `AGENTS.md`, run `bash scripts/sync-agent-rules.sh` to regenerate platform-specific instruction files.
-- After editing `.claude/skills/clone-website/SKILL.md`, run `node scripts/sync-skills.mjs` to regenerate the skill for all platforms.
+## Conventions
 
-@docs/research/INSPECTION_GUIDE.md
+- Server components by default. Reach for `"use client"` only when a section needs state, effects, or browser APIs.
+- Kebab-case file names; PascalCase component names; camelCase utilities.
+- Use the `@/*` alias for cross-directory imports; relative paths within a feature are fine.
+- Tailwind utility classes only, no inline `style` except for dynamic values that can't be expressed in classes.
+- No `console.log` in committed code (`console.warn` and `console.error` are allowed).
+- Prefer deletion over abstraction. Don't speculate on future needs.
+
+## Workflow
+
+1. `npm run dev` — work locally.
+2. Make small, focused commits using [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, `refactor:`, `style:`, `docs:`, `perf:`, `ci:`).
+3. The pre-commit hook formats and lints staged files.
+4. `npm run check` must pass before opening a PR (lint + typecheck + format:check + build). CI runs the same command on `main`.
