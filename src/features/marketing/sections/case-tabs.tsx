@@ -13,6 +13,7 @@ type Case = {
   category: string;
   problem: string;
   build: string;
+  image: string;
 };
 
 const cases: Case[] = [
@@ -25,6 +26,7 @@ const cases: Case[] = [
       "Real-time voice agents that hold a conversation, retrieve context, and act — without latency that breaks the illusion.",
     build:
       "A working voice-AI feature on top of fonio’s infra: a use case, a demo, and a pitch on why their voice stack should power it.",
+    image: "/images/fonio.jpg",
   },
   {
     id: "techbold",
@@ -35,6 +37,7 @@ const cases: Case[] = [
       "Mid-market IT teams drown in tickets, manual provisioning, and drift between systems. There’s a better automation layer waiting to be built.",
     build:
       "An automation or AI-assisted tool that meaningfully cuts time on a real techbold workflow. Bonus points for measurable wins.",
+    image: "/images/techbold.jpg",
   },
 ];
 
@@ -43,34 +46,41 @@ export function CaseTabs() {
   const current = cases.find((c) => c.id === active) ?? cases[0]!;
 
   return (
-    <section id="cases">
+    <section id="cases" className="py-24 lg:py-32">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="h2">The cases</h2>
+        <h2 className="h2 font-normal">The cases</h2>
         <p className="b2 text-dark-3 mx-auto mt-4 max-w-[36rem]">
           Pick a case partner. Build something they actually want. More cases announcing soon.
         </p>
       </div>
 
-      <div className="mt-16">
+      <div className="container mx-auto mt-14 max-w-[64rem] px-4">
         <div
-          className="flex items-center gap-10 overflow-x-auto px-6 md:justify-center lg:gap-16"
-          style={{ scrollbarWidth: "none" }}
+          role="tablist"
+          aria-label="Case partners"
+          className="border-dark-1/10 flex items-center justify-center gap-8 border-b"
         >
           {cases.map((c) => {
             const isActive = active === c.id;
             return (
               <button
                 key={c.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`case-panel-${c.id}`}
                 onClick={() => setActive(c.id)}
                 className={
-                  "group relative snap-center px-0 pb-2 text-nowrap transition-opacity duration-200 " +
-                  (isActive ? "opacity-100" : "opacity-60 hover:opacity-80")
+                  "b2 relative -mb-px py-4 transition-colors " +
+                  (isActive
+                    ? "text-dark-1 font-medium"
+                    : "text-dark-3 hover:text-dark-1 font-normal")
                 }
               >
-                <span className="b2">{c.label}</span>
+                {c.label}
                 <span
                   className={
-                    "bg-dark-1 absolute right-0 bottom-0 left-0 h-[2px] transition-opacity duration-300 " +
+                    "bg-dark-1 absolute right-0 -bottom-px left-0 h-[2px] transition-opacity duration-200 " +
                     (isActive ? "opacity-100" : "opacity-0")
                   }
                 />
@@ -78,71 +88,47 @@ export function CaseTabs() {
             );
           })}
         </div>
-      </div>
 
-      <div className="bg-blue-3 relative mt-4 overflow-hidden">
-        <Image
-          src="/images/yellow-section-bg.svg"
-          alt=""
-          width={1440}
-          height={790}
-          className="pointer-events-none absolute top-0 left-0 h-[105%] w-full object-cover select-none"
-          unoptimized
-        />
-
-        <div className="relative z-10 container mx-auto max-w-[30.375rem] px-4 lg:max-w-[67.75rem]">
-          <div className="py-16 lg:py-24">
-            <div className="w-full">
-              <div
-                className="flex flex-col items-stretch justify-between rounded-[0.30106rem] p-1.5 md:gap-8 lg:flex-row-reverse lg:gap-[3.25rem] lg:rounded-xl"
-                style={{ backgroundColor: "#6495FF" }}
-              >
-                <div className="order-2 flex flex-col justify-between gap-12 px-7 pt-8 pb-10 lg:order-0 lg:w-[19rem] lg:shrink-0 lg:py-11 lg:pr-4 lg:pl-10">
-                  <div className="flex flex-col gap-6">
-                    <span className="b3 text-blue-1/70 tracking-wider uppercase">
-                      {current.category}
-                    </span>
-                    <h3 className="h3 text-blue-1">{current.partner}</h3>
-                    <p className="b2 text-blue-1/80">{current.problem}</p>
-                  </div>
-                  <div>
-                    <Link href={APPLY_URL} target="_blank" rel="noopener noreferrer">
-                      <button
-                        type="button"
-                        className="border-blue-1/20 hover:border-blue-1 text-blue-1 inline-flex items-center justify-center rounded-[0.625rem] border px-[1.4375rem] py-[0.9375rem] text-sm leading-[100%] font-normal transition-colors"
-                      >
-                        Request to Join
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="bg-light-1 flex aspect-square flex-col justify-between overflow-hidden rounded-[0.30106rem] p-8 lg:flex-1 lg:rounded-xl lg:p-12">
-                  <div className="flex items-start justify-between">
-                    <div
-                      className="text-dark-1 text-2xl font-bold lg:text-3xl"
-                      style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
-                    >
-                      {current.partner}
-                    </div>
-                    <span className="rounded-pill border-dark-1/15 bg-light-2 text-dark-2 border px-3 py-1 text-xs">
-                      Case partner
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <span className="b3 text-dark-3 tracking-wider uppercase">
-                      What you’ll build
-                    </span>
-                    <p
-                      className="text-dark-1 text-lg leading-snug italic lg:text-xl"
-                      style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
-                    >
-                      {current.build}
-                    </p>
-                  </div>
-                </div>
-              </div>
+        <div
+          key={current.id}
+          id={`case-panel-${current.id}`}
+          role="tabpanel"
+          className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
+        >
+          <div className="border-dark-1/8 overflow-hidden rounded-2xl border bg-white">
+            <div className="relative aspect-[4/3] w-full">
+              <Image
+                src={current.image}
+                alt={`${current.partner} case preview`}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 32rem, 100vw"
+              />
             </div>
+          </div>
+
+          <div>
+            <p className="b3 text-dark-3 font-medium tracking-wider uppercase">{current.partner}</p>
+            <h3 className="h3 mt-2 font-normal">{current.category}</h3>
+            <p className="b1 text-dark-2 mt-5">{current.problem}</p>
+            <p className="b2 text-dark-3 mt-6">
+              <span className="text-dark-1 font-medium">What you’ll build: </span>
+              {current.build}
+            </p>
+            <Link
+              href={APPLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="b2 text-dark-1 group mt-8 inline-flex items-center gap-1.5 font-medium"
+            >
+              Apply now
+              <span
+                aria-hidden
+                className="inline-block transition-transform group-hover:translate-x-0.5"
+              >
+                →
+              </span>
+            </Link>
           </div>
         </div>
       </div>
