@@ -1,15 +1,52 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { APPLY_URL, navLinks } from "@/features/marketing/config";
 import { LogoStartHack } from "@/features/marketing/icons";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastY;
+
+      if (currentY < 80 || open) {
+        setHidden(false);
+      } else if (delta > 4) {
+        setHidden(true);
+      } else if (delta < -4) {
+        setHidden(false);
+      }
+
+      lastY = currentY;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [open]);
+
   return (
-    <header className="bg-light-1 fixed top-0 z-50 w-full">
+    <header
+      className={`bg-light-1 fixed top-0 z-50 w-full transition-transform duration-300 ease-out ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <Link
         href={APPLY_URL}
         target="_blank"
