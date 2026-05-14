@@ -57,23 +57,23 @@ const hosts: Host[] = [
 export function Hosts() {
   return (
     <section id="hosts" className="pt-16 pb-24 lg:pt-20 lg:pb-28">
-      <div className="container mx-auto px-4 max-w-[68rem]">
-        <div className="text-center mb-14 lg:mb-16">
+      <div className="container mx-auto max-w-[68rem] px-4">
+        <div className="mb-14 text-center lg:mb-16">
           <h2 className="h2">The crew running this</h2>
-          <p className="b2 text-dark-3 mt-4 max-w-[34rem] mx-auto">
+          <p className="b2 text-dark-3 mx-auto mt-4 max-w-[34rem]">
             START Vienna&rsquo;s organizers and HOIV, in the room with you all weekend.
           </p>
         </div>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5">
           {hosts.map((h) => (
             <li
               key={h.name}
-              className="rounded-card border border-light-3 bg-light-1 p-6 flex flex-col items-center text-center gap-4"
+              className="rounded-card border-light-3 bg-light-1 flex flex-col items-center gap-4 border p-6 text-center"
             >
               <div
                 className={
-                  "w-20 h-20 rounded-full flex items-center justify-center text-3xl font-semibold shrink-0 " +
+                  "flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-3xl font-semibold " +
                   h.bg +
                   " " +
                   h.text
@@ -85,7 +85,7 @@ export function Hosts() {
               </div>
               <div className="flex flex-col gap-1">
                 <h3
-                  className="text-lg text-dark-1 leading-tight"
+                  className="text-dark-1 text-lg leading-tight"
                   style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
                 >
                   {h.name}
@@ -97,7 +97,7 @@ export function Hosts() {
                   href={h.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="b3 text-dark-2 hover:text-dark-1 transition-colors underline-offset-4 hover:underline"
+                  className="b3 text-dark-2 hover:text-dark-1 underline-offset-4 transition-colors hover:underline"
                 >
                   {h.handle}
                 </Link>

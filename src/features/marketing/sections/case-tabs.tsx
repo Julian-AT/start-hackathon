@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-type Tab = {
+import { APPLY_URL } from "@/features/marketing/config";
+
+type Case = {
   id: string;
   label: string;
   partner: string;
@@ -13,7 +15,7 @@ type Tab = {
   build: string;
 };
 
-const tabs: Tab[] = [
+const cases: Case[] = [
   {
     id: "fonio",
     label: "fonio.ai",
@@ -36,9 +38,9 @@ const tabs: Tab[] = [
   },
 ];
 
-export function GalileoTabs() {
-  const [active, setActive] = useState<string>(tabs[0]!.id);
-  const current = tabs.find((t) => t.id === active) ?? tabs[0]!;
+export function CaseTabs() {
+  const [active, setActive] = useState<string>(cases[0]!.id);
+  const current = cases.find((c) => c.id === active) ?? cases[0]!;
 
   return (
     <section id="cases">
@@ -54,18 +56,18 @@ export function GalileoTabs() {
           className="flex items-center gap-10 overflow-x-auto px-6 md:justify-center lg:gap-16"
           style={{ scrollbarWidth: "none" }}
         >
-          {tabs.map((t) => {
-            const isActive = active === t.id;
+          {cases.map((c) => {
+            const isActive = active === c.id;
             return (
               <button
-                key={t.id}
-                onClick={() => setActive(t.id)}
+                key={c.id}
+                onClick={() => setActive(c.id)}
                 className={
                   "group relative snap-center px-0 pb-2 text-nowrap transition-opacity duration-200 " +
                   (isActive ? "opacity-100" : "opacity-60 hover:opacity-80")
                 }
               >
-                <span className="b2">{t.label}</span>
+                <span className="b2">{c.label}</span>
                 <span
                   className={
                     "bg-dark-1 absolute right-0 bottom-0 left-0 h-[2px] transition-opacity duration-300 " +
@@ -79,7 +81,6 @@ export function GalileoTabs() {
       </div>
 
       <div className="bg-blue-3 relative mt-4 overflow-hidden">
-        {/* Yellow squiggle bg */}
         <Image
           src="/images/yellow-section-bg.svg"
           alt=""
@@ -92,12 +93,10 @@ export function GalileoTabs() {
         <div className="relative z-10 container mx-auto max-w-[30.375rem] px-4 lg:max-w-[67.75rem]">
           <div className="py-16 lg:py-24">
             <div className="w-full">
-              {/* Inner panel with darker blue bg */}
               <div
                 className="flex flex-col items-stretch justify-between rounded-[0.30106rem] p-1.5 md:gap-8 lg:flex-row-reverse lg:gap-[3.25rem] lg:rounded-xl"
                 style={{ backgroundColor: "#6495FF" }}
               >
-                {/* Right column on desktop, top on mobile: Title + button */}
                 <div className="order-2 flex flex-col justify-between gap-12 px-7 pt-8 pb-10 lg:order-0 lg:w-[19rem] lg:shrink-0 lg:py-11 lg:pr-4 lg:pl-10">
                   <div className="flex flex-col gap-6">
                     <span className="b3 text-blue-1/70 tracking-wider uppercase">
@@ -107,11 +106,7 @@ export function GalileoTabs() {
                     <p className="b2 text-blue-1/80">{current.problem}</p>
                   </div>
                   <div>
-                    <Link
-                      href="https://luma.com/sp3ivels"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <Link href={APPLY_URL} target="_blank" rel="noopener noreferrer">
                       <button
                         type="button"
                         className="border-blue-1/20 hover:border-blue-1 text-blue-1 inline-flex items-center justify-center rounded-[0.625rem] border px-[1.4375rem] py-[0.9375rem] text-sm leading-[100%] font-normal transition-colors"
@@ -122,7 +117,6 @@ export function GalileoTabs() {
                   </div>
                 </div>
 
-                {/* Case card */}
                 <div className="bg-light-1 flex aspect-square flex-col justify-between overflow-hidden rounded-[0.30106rem] p-8 lg:flex-1 lg:rounded-xl lg:p-12">
                   <div className="flex items-start justify-between">
                     <div

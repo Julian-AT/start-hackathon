@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { APPLY_URL } from "@/features/marketing/config";
+
 const metaPills = ["Jun 6–7, 2026", "HOIV Vienna", "Free", "Teams of 2–4"];
 
 export function Hero() {
@@ -32,7 +34,7 @@ export function Hero() {
             </li>
           ))}
         </ul>
-        <Link href="https://luma.com/sp3ivels" target="_blank" rel="noopener noreferrer">
+        <Link href={APPLY_URL} target="_blank" rel="noopener noreferrer">
           <button
             type="button"
             className="text-light-1 bg-dark-1 hover:bg-dark-1/90 inline-flex items-center justify-center rounded-[0.625rem] px-6 py-4 text-sm leading-[100%] font-normal transition-colors"

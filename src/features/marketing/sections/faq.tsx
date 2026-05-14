@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 
-type AccordionItem = { id: string; title: string; body: string };
+type FaqItem = { id: string; title: string; body: string };
 
-const items: AccordionItem[] = [
+const items: FaqItem[] = [
   {
     id: "who",
     title: "Who can apply?",
@@ -38,13 +38,12 @@ const items: AccordionItem[] = [
   },
 ];
 
-export function BuiltForHow() {
+export function Faq() {
   const [open, setOpen] = useState<string>("who");
 
   return (
     <section id="faq" className="py-32">
       <div className="container mx-auto grid max-w-full items-start gap-10 px-4 lg:max-w-[54.6rem] lg:grid-cols-[1fr_1fr] lg:gap-[7.625rem]">
-        {/* Left column: heading + accordion */}
         <div className="w-full lg:max-w-[19.5rem]">
           <h2 className="h2 mb-12 lg:mb-14">The basics</h2>
           <div className="w-full">
@@ -114,7 +113,6 @@ export function BuiltForHow() {
           </div>
         </div>
 
-        {/* Right column: venue card with grid bg */}
         <div className="bg-light-2 relative h-full min-h-[30rem] w-full overflow-hidden rounded-2xl sm:min-w-[24.2rem]">
           <div
             className="absolute inset-0 opacity-100"

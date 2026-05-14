@@ -3,23 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { LogoStartHack } from "./icons";
+import { APPLY_URL, navLinks } from "@/features/marketing/config";
+import { LogoStartHack } from "@/features/marketing/icons";
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Cases", href: "#cases" },
-  { label: "How it runs", href: "#flow" },
-  { label: "Hosts", href: "#hosts" },
-  { label: "FAQ", href: "#faq" },
-];
-
-const APPLY_URL = "https://luma.com/sp3ivels";
-
-export function Header() {
+export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="bg-light-1 fixed top-0 z-50 w-full">
-      {/* Announcement bar */}
       <Link
         href={APPLY_URL}
         target="_blank"
@@ -43,7 +33,6 @@ export function Header() {
         </div>
       </Link>
 
-      {/* Main nav */}
       <div className="relative z-50 mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex-shrink-0">
@@ -52,7 +41,6 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -79,7 +67,6 @@ export function Header() {
             </button>
           </div>
 
-          {/* Desktop nav */}
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
             {navLinks.map((l) => (
               <Link
@@ -92,7 +79,6 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:block">
             <Link href={APPLY_URL} target="_blank" rel="noopener noreferrer">
               <button

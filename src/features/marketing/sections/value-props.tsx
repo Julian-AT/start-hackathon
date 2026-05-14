@@ -24,21 +24,17 @@ const features: Feature[] = [
   },
 ];
 
-export function UnderstandFeatures() {
+export function ValueProps() {
   return (
     <section id="about" className="pt-24 pb-32 lg:pt-32">
-      {/* Heading */}
-      <div className="container mx-auto px-4 max-w-[36.875rem] text-center mb-20">
+      <div className="container mx-auto mb-20 max-w-[36.875rem] px-4 text-center">
         <h2 className="h2">What you get for showing up</h2>
       </div>
 
-      {/* Sticky-side container: decorations stay pinned at viewport edges
-          while the centered feature list scrolls past them. */}
       <div className="relative w-full">
-        {/* Left side decoration — anchored to viewport edge */}
         <div
           aria-hidden
-          className="hidden lg:block absolute left-0 top-0 h-full pointer-events-none w-[clamp(180px,20vw,316px)]"
+          className="pointer-events-none absolute top-0 left-0 hidden h-full w-[clamp(180px,20vw,316px)] lg:block"
         >
           <div className="sticky top-24">
             <Image
@@ -46,16 +42,15 @@ export function UnderstandFeatures() {
               alt=""
               width={316}
               height={763}
-              className="w-full h-auto"
+              className="h-auto w-full"
               unoptimized
             />
           </div>
         </div>
 
-        {/* Right side decoration */}
         <div
           aria-hidden
-          className="hidden lg:block absolute right-0 top-0 h-full pointer-events-none w-[clamp(180px,20vw,316px)]"
+          className="pointer-events-none absolute top-0 right-0 hidden h-full w-[clamp(180px,20vw,316px)] lg:block"
         >
           <div className="sticky top-24">
             <Image
@@ -63,29 +58,25 @@ export function UnderstandFeatures() {
               alt=""
               width={316}
               height={763}
-              className="w-full h-auto"
+              className="h-auto w-full"
               unoptimized
             />
           </div>
         </div>
 
-        {/* Center column with 3 features (scrolls past the sticky sides) */}
-        <div className="container mx-auto px-4 max-w-[16rem] flex flex-col items-center gap-20 lg:gap-[7.5rem]">
+        <div className="container mx-auto flex max-w-[16rem] flex-col items-center gap-20 px-4 lg:gap-[7.5rem]">
           {features.map((f) => (
             <div
               key={f.title}
-              className="flex flex-col items-center justify-center text-center gap-4 max-w-[16rem]"
+              className="flex max-w-[16rem] flex-col items-center justify-center gap-4 text-center"
             >
-              <div
-                className="flex items-center justify-center"
-                style={{ height: 160, width: 160 }}
-              >
+              <div className="flex items-center justify-center" style={{ height: 160, width: 160 }}>
                 <Image
                   src={f.icon}
                   alt=""
                   width={160}
                   height={160}
-                  className="w-full h-auto"
+                  className="h-auto w-full"
                   unoptimized
                 />
               </div>
