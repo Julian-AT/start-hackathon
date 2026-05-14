@@ -27,10 +27,6 @@ const features: Feature[] = [
 export function ValueProps() {
   return (
     <section id="about" className="pt-24 pb-32 lg:pt-32">
-      <div className="container mx-auto mb-20 max-w-[36.875rem] px-4 text-center">
-        <h2 className="h2">What you get for showing up</h2>
-      </div>
-
       <div className="relative w-full">
         <div
           aria-hidden
@@ -62,6 +58,10 @@ export function ValueProps() {
               unoptimized
             />
           </div>
+        </div>
+
+        <div className="container mx-auto mb-20 max-w-[36.875rem] px-4 text-center">
+          <h2 className="h2">What you get for showing up</h2>
         </div>
 
         <div className="container mx-auto flex max-w-[16rem] flex-col items-center gap-20 px-4 lg:gap-[7.5rem]">
