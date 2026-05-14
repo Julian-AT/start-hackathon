@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 type FooterLink = { label: string; href: string; external?: boolean };
 
@@ -53,12 +53,12 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="pt-24 pb-8 relative bg-light-1">
-      <div className="container mx-auto px-4 max-w-[49.6rem] flex flex-col gap-[19.75rem]">
-        <div className="flex flex-col md:flex-row gap-12 justify-between">
+    <footer className="bg-light-1 relative pt-24 pb-8">
+      <div className="container mx-auto flex max-w-[49.6rem] flex-col gap-[19.75rem] px-4">
+        <div className="flex flex-col justify-between gap-12 md:flex-row">
           <div className="flex gap-5">
-            <ul className="w-[11.5rem] flex flex-col gap-5">
-              <li className="b3 uppercase tracking-wider text-dark-3">Event</li>
+            <ul className="flex w-[11.5rem] flex-col gap-5">
+              <li className="b3 text-dark-3 tracking-wider uppercase">Event</li>
               {col1.map((l) => (
                 <li key={l.label}>
                   <Link
@@ -70,8 +70,8 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <ul className="w-[11.5rem] flex flex-col gap-5">
-              <li className="b3 uppercase tracking-wider text-dark-3">Community</li>
+            <ul className="flex w-[11.5rem] flex-col gap-5">
+              <li className="b3 text-dark-3 tracking-wider uppercase">Community</li>
               {col2.map((l) => (
                 <li key={l.label}>
                   <Link
@@ -94,7 +94,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex items-center justify-center text-dark-1 hover:text-dark-1/70 transition-colors"
+                  className="text-dark-1 hover:text-dark-1/70 flex items-center justify-center transition-colors"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -110,13 +110,13 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <div className="flex justify-between text-dark-3 b2">
+        <div className="text-dark-3 b2 flex justify-between">
           <p>© 2026 START Hack Vienna · Powered by START Vienna &amp; HOIV.</p>
         </div>
       </div>
 
       {/* Decorative scenery (footer-left/center/right images) */}
-      <div className="absolute bottom-20 lg:bottom-0 left-0 right-0 flex items-end justify-center lg:justify-between pointer-events-none">
+      <div className="pointer-events-none absolute right-0 bottom-20 left-0 flex items-end justify-center lg:bottom-0 lg:justify-between">
         <Image
           src="/images/footer-left-visual.png"
           alt=""

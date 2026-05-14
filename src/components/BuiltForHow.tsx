@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 type AccordionItem = { id: string; title: string; body: string };
 
@@ -43,7 +43,7 @@ export function BuiltForHow() {
 
   return (
     <section id="faq" className="py-32">
-      <div className="container mx-auto px-4 max-w-full lg:max-w-[54.6rem] grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-[7.625rem] items-start">
+      <div className="container mx-auto grid max-w-full items-start gap-10 px-4 lg:max-w-[54.6rem] lg:grid-cols-[1fr_1fr] lg:gap-[7.625rem]">
         {/* Left column: heading + accordion */}
         <div className="w-full lg:max-w-[19.5rem]">
           <h2 className="h2 mb-12 lg:mb-14">The basics</h2>
@@ -53,14 +53,14 @@ export function BuiltForHow() {
               return (
                 <div
                   key={item.id}
-                  className="border-b border-light-3 my-3 first:mt-0"
+                  className="border-light-3 my-3 border-b first:mt-0"
                   data-state={isOpen ? "open" : "closed"}
                 >
                   <button
                     type="button"
                     onClick={() => setOpen(isOpen ? "" : item.id)}
                     aria-expanded={isOpen}
-                    className="flex flex-1 py-4 font-medium transition-all hover:underline w-full text-left flex-row items-center justify-start gap-2"
+                    className="flex w-full flex-1 flex-row items-center justify-start gap-2 py-4 text-left font-medium transition-all hover:underline"
                   >
                     <svg
                       width="12"
@@ -88,8 +88,7 @@ export function BuiltForHow() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       className={
-                        "shrink-0 transition-transform duration-200 " +
-                        (isOpen ? "rotate-45" : "")
+                        "shrink-0 transition-transform duration-200 " + (isOpen ? "rotate-45" : "")
                       }
                       aria-hidden
                     >
@@ -104,7 +103,7 @@ export function BuiltForHow() {
                     }
                   >
                     <div className="overflow-hidden">
-                      <div className="pb-4 pt-1 pl-5">
+                      <div className="pt-1 pb-4 pl-5">
                         <p className="b2 text-dark-3">{item.body}</p>
                       </div>
                     </div>
@@ -116,7 +115,7 @@ export function BuiltForHow() {
         </div>
 
         {/* Right column: venue card with grid bg */}
-        <div className="w-full h-full min-h-[30rem] sm:min-w-[24.2rem] relative rounded-2xl overflow-hidden bg-light-2">
+        <div className="bg-light-2 relative h-full min-h-[30rem] w-full overflow-hidden rounded-2xl sm:min-w-[24.2rem]">
           <div
             className="absolute inset-0 opacity-100"
             style={{
@@ -126,25 +125,25 @@ export function BuiltForHow() {
             }}
             aria-hidden
           />
-          <div className="relative w-full h-full flex flex-col gap-6 justify-between p-8 overflow-hidden z-10 min-h-[30rem]">
+          <div className="relative z-10 flex h-full min-h-[30rem] w-full flex-col justify-between gap-6 overflow-hidden p-8">
             <div className="flex flex-col gap-3">
-              <span className="b3 uppercase tracking-wider text-dark-3">The venue</span>
+              <span className="b3 text-dark-3 tracking-wider uppercase">The venue</span>
               <h3
-                className="text-2xl lg:text-3xl text-dark-1 leading-tight"
+                className="text-dark-1 text-2xl leading-tight lg:text-3xl"
                 style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
               >
                 HOIV — Home of InnoVation
               </h3>
             </div>
-            <div className="flex-1 flex items-center justify-center">
-              <div className="rounded-card bg-light-1 border border-light-3 px-6 py-8 text-center w-full max-w-[20rem]">
+            <div className="flex flex-1 items-center justify-center">
+              <div className="rounded-card bg-light-1 border-light-3 w-full max-w-[20rem] border px-6 py-8 text-center">
                 <p className="b1 text-dark-1">Arsenalstraße 11</p>
                 <p className="b1 text-dark-1">1030 Wien, Austria</p>
                 <Link
                   href="https://maps.google.com/?cid=15116562244002937656"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 mt-4 b2 text-dark-2 hover:text-dark-1 transition-colors underline"
+                  className="b2 text-dark-2 hover:text-dark-1 mt-4 inline-flex items-center gap-1 underline transition-colors"
                 >
                   Open in Google Maps
                   <span aria-hidden>↗</span>

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 type Tab = {
   id: string;
@@ -44,14 +44,14 @@ export function GalileoTabs() {
     <section id="cases">
       <div className="container mx-auto px-4 text-center">
         <h2 className="h2">The cases</h2>
-        <p className="b2 text-dark-3 mt-4 max-w-[36rem] mx-auto">
+        <p className="b2 text-dark-3 mx-auto mt-4 max-w-[36rem]">
           Pick a case partner. Build something they actually want. More cases announcing soon.
         </p>
       </div>
 
       <div className="mt-16">
         <div
-          className="flex items-center gap-10 lg:gap-16 overflow-x-auto md:justify-center px-6"
+          className="flex items-center gap-10 overflow-x-auto px-6 md:justify-center lg:gap-16"
           style={{ scrollbarWidth: "none" }}
         >
           {tabs.map((t) => {
@@ -61,14 +61,14 @@ export function GalileoTabs() {
                 key={t.id}
                 onClick={() => setActive(t.id)}
                 className={
-                  "text-nowrap snap-center group relative pb-2 px-0 transition-opacity duration-200 " +
+                  "group relative snap-center px-0 pb-2 text-nowrap transition-opacity duration-200 " +
                   (isActive ? "opacity-100" : "opacity-60 hover:opacity-80")
                 }
               >
                 <span className="b2">{t.label}</span>
                 <span
                   className={
-                    "absolute bottom-0 left-0 right-0 h-[2px] bg-dark-1 transition-opacity duration-300 " +
+                    "bg-dark-1 absolute right-0 bottom-0 left-0 h-[2px] transition-opacity duration-300 " +
                     (isActive ? "opacity-100" : "opacity-0")
                   }
                 />
@@ -78,29 +78,29 @@ export function GalileoTabs() {
         </div>
       </div>
 
-      <div className="relative overflow-hidden mt-4 bg-blue-3">
+      <div className="bg-blue-3 relative mt-4 overflow-hidden">
         {/* Yellow squiggle bg */}
         <Image
           src="/images/yellow-section-bg.svg"
           alt=""
           width={1440}
           height={790}
-          className="pointer-events-none select-none absolute top-0 left-0 w-full h-[105%] object-cover"
+          className="pointer-events-none absolute top-0 left-0 h-[105%] w-full object-cover select-none"
           unoptimized
         />
 
-        <div className="container mx-auto px-4 relative z-10 max-w-[30.375rem] lg:max-w-[67.75rem]">
+        <div className="relative z-10 container mx-auto max-w-[30.375rem] px-4 lg:max-w-[67.75rem]">
           <div className="py-16 lg:py-24">
             <div className="w-full">
               {/* Inner panel with darker blue bg */}
               <div
-                className="p-1.5 flex flex-col items-stretch justify-between md:gap-8 lg:gap-[3.25rem] lg:flex-row-reverse rounded-[0.30106rem] lg:rounded-xl"
+                className="flex flex-col items-stretch justify-between rounded-[0.30106rem] p-1.5 md:gap-8 lg:flex-row-reverse lg:gap-[3.25rem] lg:rounded-xl"
                 style={{ backgroundColor: "#6495FF" }}
               >
                 {/* Right column on desktop, top on mobile: Title + button */}
-                <div className="px-7 lg:pl-10 lg:pr-4 pt-8 pb-10 lg:py-11 lg:w-[19rem] lg:shrink-0 flex flex-col justify-between gap-12 order-2 lg:order-0">
+                <div className="order-2 flex flex-col justify-between gap-12 px-7 pt-8 pb-10 lg:order-0 lg:w-[19rem] lg:shrink-0 lg:py-11 lg:pr-4 lg:pl-10">
                   <div className="flex flex-col gap-6">
-                    <span className="b3 uppercase tracking-wider text-blue-1/70">
+                    <span className="b3 text-blue-1/70 tracking-wider uppercase">
                       {current.category}
                     </span>
                     <h3 className="h3 text-blue-1">{current.partner}</h3>
@@ -114,7 +114,7 @@ export function GalileoTabs() {
                     >
                       <button
                         type="button"
-                        className="rounded-[0.625rem] font-normal text-sm leading-[100%] transition-colors items-center justify-center inline-flex border border-blue-1/20 px-[1.4375rem] py-[0.9375rem] hover:border-blue-1 text-blue-1"
+                        className="border-blue-1/20 hover:border-blue-1 text-blue-1 inline-flex items-center justify-center rounded-[0.625rem] border px-[1.4375rem] py-[0.9375rem] text-sm leading-[100%] font-normal transition-colors"
                       >
                         Request to Join
                       </button>
@@ -123,24 +123,24 @@ export function GalileoTabs() {
                 </div>
 
                 {/* Case card */}
-                <div className="lg:flex-1 rounded-[0.30106rem] lg:rounded-xl overflow-hidden aspect-square bg-light-1 p-8 lg:p-12 flex flex-col justify-between">
+                <div className="bg-light-1 flex aspect-square flex-col justify-between overflow-hidden rounded-[0.30106rem] p-8 lg:flex-1 lg:rounded-xl lg:p-12">
                   <div className="flex items-start justify-between">
                     <div
-                      className="text-2xl lg:text-3xl text-dark-1 font-bold"
+                      className="text-dark-1 text-2xl font-bold lg:text-3xl"
                       style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
                     >
                       {current.partner}
                     </div>
-                    <span className="rounded-pill border border-dark-1/15 bg-light-2 px-3 py-1 text-xs text-dark-2">
+                    <span className="rounded-pill border-dark-1/15 bg-light-2 text-dark-2 border px-3 py-1 text-xs">
                       Case partner
                     </span>
                   </div>
                   <div className="flex flex-col gap-4">
-                    <span className="b3 uppercase tracking-wider text-dark-3">
+                    <span className="b3 text-dark-3 tracking-wider uppercase">
                       What you’ll build
                     </span>
                     <p
-                      className="text-lg lg:text-xl italic text-dark-1 leading-snug"
+                      className="text-dark-1 text-lg leading-snug italic lg:text-xl"
                       style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
                     >
                       {current.build}

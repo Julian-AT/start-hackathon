@@ -1,26 +1,22 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export function CTAYellow() {
   return (
     <section>
-      <div className="container mx-auto px-4 max-w-[68rem]">
+      <div className="container mx-auto max-w-[68rem] px-4">
         <div className="bg-yellow-2">
-          <div className="w-full max-w-[49.75rem] mx-auto flex flex-col gap-16 justify-between items-center py-24 px-8 md:flex-row md:gap-0">
+          <div className="mx-auto flex w-full max-w-[49.75rem] flex-col items-center justify-between gap-16 px-8 py-24 md:flex-row md:gap-0">
             {/* Left: heading + button */}
-            <div className="max-w-[22rem] text-yellow-1 flex flex-col items-center text-center md:block md:text-left">
+            <div className="text-yellow-1 flex max-w-[22rem] flex-col items-center text-center md:block md:text-left">
               <h2 className="h3 mb-4">Bring your laptop. Leave with a portfolio.</h2>
               <p className="b2 mb-10">
                 Early Bird applications are open. Approval-based, rolling admissions.
               </p>
-              <Link
-                href="https://luma.com/sp3ivels"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href="https://luma.com/sp3ivels" target="_blank" rel="noopener noreferrer">
                 <button
                   type="button"
-                  className="rounded-[0.625rem] font-normal text-sm leading-[100%] transition-colors inline-flex items-center justify-center text-white px-6 py-4 bg-yellow-1 hover:bg-yellow-1/85"
+                  className="bg-yellow-1 hover:bg-yellow-1/85 inline-flex items-center justify-center rounded-[0.625rem] px-6 py-4 text-sm leading-[100%] font-normal text-white transition-colors"
                 >
                   Request to Join
                 </button>
@@ -28,13 +24,16 @@ export function CTAYellow() {
             </div>
 
             {/* Right: doodle illustration */}
-            <div className="w-full md:w-[20rem] lg:w-[24rem] flex items-center justify-center" draggable={false}>
+            <div
+              className="flex w-full items-center justify-center md:w-[20rem] lg:w-[24rem]"
+              draggable={false}
+            >
               <Image
                 src="/images/snake.svg"
                 alt=""
                 width={400}
                 height={300}
-                className="w-full h-auto max-w-[20rem]"
+                className="h-auto w-full max-w-[20rem]"
                 unoptimized
               />
             </div>

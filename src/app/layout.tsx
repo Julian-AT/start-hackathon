@@ -1,6 +1,7 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
 
 const suisseIntl = localFont({
   src: [
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="en"
       className={`light ${suisseIntl.variable} ${iowanOld.variable} ${heming.variable}`}
     >
-      <body className="antialiased font-sans bg-light-1 text-dark-1 min-h-full flex flex-col">
+      <body className="bg-light-1 text-dark-1 flex min-h-full flex-col font-sans antialiased">
         {children}
       </body>
     </html>
