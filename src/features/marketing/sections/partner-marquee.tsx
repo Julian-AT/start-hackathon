@@ -22,7 +22,7 @@ function PartnerTrack({ ariaHidden }: { ariaHidden: boolean }) {
             alt={ariaHidden ? "" : p.name}
             width={200}
             height={48}
-            className="h-12 w-auto object-contain grayscale"
+            className="h-12 w-auto object-contain"
             unoptimized
           />
         </div>
