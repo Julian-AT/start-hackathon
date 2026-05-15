@@ -61,7 +61,7 @@ export function ValueProps() {
         </div>
 
         <div className="container mx-auto mb-20 max-w-[36.875rem] px-4 text-center">
-          <h2 className="h2">What you get for showing up</h2>
+          <h2 className="h2 font-normal">What you get for showing up</h2>
         </div>
 
         <div className="container mx-auto flex max-w-[16rem] flex-col items-center gap-20 px-4 lg:gap-[7.5rem]">

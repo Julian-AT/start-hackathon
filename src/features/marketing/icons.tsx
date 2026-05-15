@@ -1,29 +1,21 @@
-import type { SVGProps } from "react";
+import Image from "next/image";
+import type { ComponentPropsWithoutRef, SVGProps } from "react";
 
-export function LogoStartHack(props: SVGProps<SVGSVGElement>) {
+import { cn } from "@/lib/utils";
+
+export function LogoStartHack({ className, ...props }: ComponentPropsWithoutRef<"div">) {
   return (
-    <svg viewBox="0 0 200 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <g
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      >
-        <path d="M4 12 L10 6 L16 12 L10 18 Z" />
-        <path d="M10 6 L10 18 M4 12 L16 12" strokeWidth="0.9" />
-      </g>
-      <text
-        x="24"
-        y="17"
-        fontFamily="var(--font-iowan), Georgia, serif"
-        fontSize="16"
-        fontWeight="600"
-        fill="currentColor"
-      >
-        START Hack Vienna
-      </text>
-    </svg>
+    <div className={cn("flex items-center gap-1", className)} {...props}>
+      <Image
+        src="/images/logo_transparent.png"
+        alt=""
+        width={200}
+        height={200}
+        className="h-8 w-auto shrink-0"
+        aria-hidden="true"
+      />
+      <span className="text-dark-1 text-lg font-medium tracking-tight">START Hack Vienna</span>
+    </div>
   );
 }
 

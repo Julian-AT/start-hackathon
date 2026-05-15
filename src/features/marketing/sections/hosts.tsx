@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type Host = {
@@ -8,6 +9,7 @@ type Host = {
   initial: string;
   bg: string;
   text: string;
+  image?: string;
 };
 
 const hosts: Host[] = [
@@ -17,15 +19,16 @@ const hosts: Host[] = [
     initial: "D",
     bg: "bg-blue-3",
     text: "text-blue-1",
+    image: "/organizers/sydo_daniel.jpg",
   },
   {
-    name: "Abdul Basit Banbhan",
+    name: "Abdul Banbhan",
     role: "Co-organizer",
     handle: "@abbanbhan",
-    href: "https://x.com/abbanbhan",
     initial: "A",
     bg: "bg-yellow-3",
     text: "text-yellow-1",
+    image: "/organizers/abdul_basit_banbahn.png",
   },
   {
     name: "Julian Schmidt",
@@ -33,24 +36,25 @@ const hosts: Host[] = [
     initial: "J",
     bg: "bg-pink-3",
     text: "text-pink-1",
+    image: "/organizers/julian_schmidt.png",
   },
   {
     name: "Kyrillus Mehanni",
     role: "Co-organizer",
     handle: "@kyrill.us",
-    href: "https://instagram.com/kyrill.us",
     initial: "K",
     bg: "bg-green-3",
     text: "text-green-1",
+    image: "/organizers/kyrillus_mehanni.png",
   },
   {
     name: "HOIV",
     role: "Venue partner",
     handle: "@hoiv.me",
-    href: "https://instagram.com/hoiv.me",
     initial: "H",
     bg: "bg-orange-3",
     text: "text-orange-1",
+    image: "/organizers/hoiv_logo.jpeg",
   },
 ];
 
@@ -71,25 +75,37 @@ export function Hosts() {
               key={h.name}
               className="rounded-card border-light-3 bg-light-1 flex flex-col items-center gap-4 border p-6 text-center"
             >
-              <div
-                className={
-                  "flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-3xl font-semibold " +
-                  h.bg +
-                  " " +
-                  h.text
-                }
-                style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
-                aria-hidden
-              >
-                {h.initial}
-              </div>
-              <div className="flex flex-col gap-1">
-                <h3
-                  className="text-dark-1 text-lg leading-tight"
-                  style={{ fontFamily: "var(--font-iowan), Georgia, serif" }}
+              {h.image ? (
+                <div
+                  className={
+                    "flex h-20 w-20 shrink-0 items-center justify-center rounded-full " + h.bg
+                  }
+                  aria-hidden
                 >
-                  {h.name}
-                </h3>
+                  <Image
+                    src={h.image}
+                    alt={h.name}
+                    className="h-full w-full rounded-full object-cover"
+                    width={80}
+                    height={80}
+                  />
+                </div>
+              ) : (
+                <div
+                  className={
+                    "flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-3xl font-semibold " +
+                    h.bg +
+                    " " +
+                    h.text
+                  }
+                  aria-hidden
+                >
+                  {h.initial}
+                </div>
+              )}
+
+              <div className="flex flex-col gap-1">
+                <h3 className="text-dark-1 text-lg leading-tight">{h.name}</h3>
                 <p className="b3 text-dark-3">{h.role}</p>
               </div>
               {h.handle && h.href ? (

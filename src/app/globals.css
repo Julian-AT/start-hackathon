@@ -4,11 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Opennote.com clone — design tokens extracted from live site
- * Body bg: #efefef (light-1) — neutral light gray
- * Body text: rgb(25, 25, 25) (dark-1)
- * Heading serif: IowanOld (40-48px display)
- * Body sans: SuisseIntl
+ * Design tokens derived from START Hack Vienna marketing visuals.
+ * Typography: Vercel Geist Sans + Geist Mono (`geist` package, variables on <html> from layout.tsx).
  */
 @theme inline {
   /* Color palette — extracted via getComputedStyle on .bg-* / .text-* utilities */
@@ -42,13 +39,14 @@
 
   --color-sage-3: rgb(220, 232, 218);
 
-  --color-announcement-bg: #f7c3f7;
-  --color-announcement-text: #9d17a0;
+  --color-announcement-bg: #f9a717;
+  --color-announcement-text: #fefefe;
 
-  /* Fonts */
-  --font-sans: var(--font-suisse), "SuisseIntl", system-ui, sans-serif;
-  --font-serif: var(--font-iowan), "IowanOld", Georgia, serif;
-  --font-display: var(--font-heming), "Heming Variable", var(--font-iowan), serif;
+  /* Fonts — `--font-geist-*` comes from geist/font on <html>; do not shadow them with self-referential @theme tokens. */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-heading: var(--font-geist-sans), system-ui, sans-serif;
+  --font-serif: var(--font-geist-sans), system-ui, sans-serif;
 
   /* Radii */
   --radius-card: 1.25rem;
@@ -92,27 +90,27 @@
 
   /* Heading utility classes mirroring opennote's `.h1`, `.h2`, `.h3` */
   .h1 {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: 3rem;
     line-height: 1.083;
     font-weight: 400;
     letter-spacing: -0.01em;
   }
   .h2 {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: 2.625rem;
     line-height: 1.1;
     font-weight: 400;
     letter-spacing: -0.005em;
   }
   .h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: 2rem;
     line-height: 1.12;
     font-weight: 400;
   }
   .h4 {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: 1.25rem;
     line-height: 1.2;
     font-weight: 400;

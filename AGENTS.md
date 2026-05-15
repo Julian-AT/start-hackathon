@@ -7,7 +7,7 @@ Marketing site for START Hack Vienna '26. Single Next.js 16 App Router project, 
 - Next.js 16 (App Router), React 19, TypeScript strict
 - Tailwind CSS v4 (CSS-first config in `src/app/globals.css`)
 - shadcn/ui primitives on top of `@base-ui/react`
-- `next/font/local` for self-hosted fonts
+- Typography via the [`geist`](https://www.npmjs.com/package/geist) package (`GeistSans` / `GeistMono` from `next/font` wrappers bundled with the npm package), variables applied on `<html>` in `src/app/layout.tsx`
 
 This is **not** the Next.js you might know — APIs and conventions have changed. When in doubt, read the relevant guide in `node_modules/next/dist/docs/` before writing code.
 
@@ -42,3 +42,11 @@ Don't create `services/`, `providers/`, `hooks/`, or `types/` until something ac
 2. Make small, focused commits using [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, `refactor:`, `style:`, `docs:`, `perf:`, `ci:`).
 3. The pre-commit hook formats and lints staged files.
 4. `npm run check` must pass before opening a PR (lint + typecheck + format:check + build). CI runs the same command on `main`.
+
+## Learned User Preferences
+
+- Prefer **Geist Sans** (and Geist Mono for monospace) via the **`geist`** npm package unless the brief explicitly asks for a different family.
+
+## Learned Workspace Facts
+
+- `layout.tsx` applies **`GeistSans.variable`** and **`GeistMono.variable`** on `<html>`, exposing **`--font-geist-sans`** and **`--font-geist-mono`**. In **`@theme`**, wire **`--font-sans` / `--font-mono`** to those vars — never redefine `--font-geist-sans` as `var(--font-geist-sans)` (same self-referential pitfall as with any next/font `variable`).
