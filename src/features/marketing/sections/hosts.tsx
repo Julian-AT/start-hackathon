@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 type Host = {
   name: string;
@@ -61,7 +60,7 @@ export function Hosts() {
           {hosts.map((h) => (
             <li
               key={h.name}
-              className="border-border bg-card flex min-h-44 flex-col items-center gap-4 rounded-2xl border p-6 text-center"
+              className="border-border bg-secondary flex min-h-44 flex-col items-center gap-4 rounded-2xl border p-6 pb-12 text-center"
             >
               <div
                 className={`flex h-20 w-20 shrink-0 items-center justify-center rounded-full ${h.bg}`}
@@ -80,20 +79,6 @@ export function Hosts() {
                 <h3 className="h4">{h.name}</h3>
                 <p className="b3 text-muted-foreground">{h.role}</p>
               </div>
-              {h.handle ? (
-                h.href ? (
-                  <Link
-                    href={h.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="b3 text-muted-foreground hover:text-foreground mt-auto underline-offset-4 transition-colors hover:underline"
-                  >
-                    {h.handle}
-                  </Link>
-                ) : (
-                  <span className="b3 text-muted-foreground mt-auto">{h.handle}</span>
-                )
-              ) : null}
             </li>
           ))}
         </ul>
