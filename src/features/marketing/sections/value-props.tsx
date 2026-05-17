@@ -26,19 +26,19 @@ const features: Feature[] = [
 
 export function ValueProps() {
   return (
-    <section id="about" className="pt-24 pb-32 lg:pt-32">
+    <section id="about" className="py-20 lg:py-28">
       <div className="relative w-full">
         <div
           aria-hidden
-          className="pointer-events-none absolute top-0 left-0 hidden h-full w-[clamp(180px,20vw,316px)] lg:block"
+          className="pointer-events-none absolute top-0 left-0 hidden h-[100vh] w-[clamp(25vw,20vw,300vw)] lg:block"
         >
           <div className="sticky top-24">
             <Image
-              src="/images/left-side.png"
+              src="/images/test.png"
               alt=""
-              width={316}
-              height={763}
-              className="h-auto w-full"
+              width={948}
+              height={2289}
+              className="h-auto w-full opacity-30"
               unoptimized
             />
           </div>
@@ -60,11 +60,11 @@ export function ValueProps() {
           </div>
         </div>
 
-        <div className="container mx-auto mb-20 max-w-[36.875rem] px-4 text-center">
-          <h2 className="h2 font-normal">What you get for showing up</h2>
+        <div className="container mx-auto mb-20 max-w-2xl px-4 text-center">
+          <h2 className="h2">What you get for showing up</h2>
         </div>
 
-        <div className="container mx-auto flex max-w-[16rem] flex-col items-center gap-20 px-4 lg:gap-[7.5rem]">
+        <div className="container mx-auto flex max-w-2xl flex-col items-center gap-20 px-4 lg:gap-[7.5rem]">
           {features.map((f) => (
             <div
               key={f.title}
@@ -80,8 +80,8 @@ export function ValueProps() {
                   unoptimized
                 />
               </div>
-              <h3 className="h3">{f.title}</h3>
-              <p className="b2 text-dark-3 max-w-[34ch]">{f.body}</p>
+              <h3 className="h3 text-balance">{f.title}</h3>
+              <p className="b2 text-muted-foreground max-w-[34ch] text-balance">{f.body}</p>
             </div>
           ))}
         </div>

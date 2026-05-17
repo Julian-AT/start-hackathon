@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1 overflow-x-clip pt-[calc(2.25rem+3.5rem)] pb-16">
+      <main className="flex-1 overflow-x-clip pt-[var(--header-h)] pb-16">
         <Hero />
         <PartnerMarquee />
         <CaseTabs />
