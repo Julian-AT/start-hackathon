@@ -16,8 +16,8 @@ const partners: Partner[] = [
 
 export function PartnerMarquee() {
   return (
-    <section className="py-12 lg:py-16">
-      <div className="container mx-auto max-w-5xl px-4">
+    <section className="py-10 lg:py-12">
+      <div className="container mx-auto max-w-5xl px-5">
         <p className="eyebrow text-muted-foreground text-center">
           Backed by builders, for builders
         </p>

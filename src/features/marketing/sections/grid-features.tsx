@@ -48,12 +48,12 @@ const features: Feature[] = [
 
 export function GridFeatures() {
   return (
-    <section id="basics" className="py-20 lg:py-28">
-      <div className="container mx-auto max-w-5xl px-4">
-        <h2 className="h2 mb-12 text-center lg:mb-16">The basics</h2>
+    <section id="basics" className="py-14 lg:py-28">
+      <div className="container mx-auto max-w-5xl px-5">
+        <h2 className="h2 mb-10 text-center lg:mb-16">The basics</h2>
         <div className="bg-border grid gap-px overflow-hidden rounded-2xl md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <div key={feature.title} className="bg-background flex flex-col gap-3 p-8 md:p-10">
+            <div key={feature.title} className="bg-background flex flex-col gap-3 p-6 md:p-10">
               <div className="text-foreground [&_svg]:size-6">{feature.icon}</div>
               <h3 className="h4 mt-1">{feature.title}</h3>
               <p className="b3 text-muted-foreground max-w-[30ch]">{feature.description}</p>

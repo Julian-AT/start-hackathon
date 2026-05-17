@@ -26,7 +26,7 @@ const features: Feature[] = [
 
 export function ValueProps() {
   return (
-    <section id="about" className="relative py-20 lg:py-28">
+    <section id="about" className="relative py-14 lg:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute top-0 left-0 hidden h-full w-[clamp(140px,16vw,260px)] lg:block"
@@ -57,12 +57,12 @@ export function ValueProps() {
         </div>
       </div>
 
-      <div className="relative container mx-auto max-w-2xl px-4">
-        <h2 className="h2 mb-16 text-center lg:mb-20">What you get for showing up</h2>
-        <div className="flex flex-col items-center gap-20 lg:gap-24">
+      <div className="relative container mx-auto max-w-2xl px-5">
+        <h2 className="h2 mb-12 text-center lg:mb-20">What you get for showing up</h2>
+        <div className="flex flex-col items-center gap-14 lg:gap-24">
           {features.map((f) => (
             <div key={f.title} className="flex max-w-md flex-col items-center gap-4 text-center">
-              <div className="flex h-56 w-56 items-center justify-center sm:h-64 sm:w-64">
+              <div className="flex h-44 w-44 items-center justify-center sm:h-64 sm:w-64">
                 <Image src={f.icon} alt="" width={256} height={256} className="h-auto w-full" />
               </div>
               <h3 className="h3">{f.title}</h3>

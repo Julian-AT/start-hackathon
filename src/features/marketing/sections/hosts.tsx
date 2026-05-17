@@ -47,23 +47,23 @@ const hosts: Host[] = [
 
 export function Hosts() {
   return (
-    <section id="hosts" className="py-16 lg:py-20">
-      <div className="container mx-auto max-w-5xl px-4">
-        <div className="mb-12 text-center lg:mb-16">
+    <section id="hosts" className="py-14 lg:py-20">
+      <div className="container mx-auto max-w-5xl px-5">
+        <div className="mb-10 text-center lg:mb-16">
           <h2 className="h2">The crew running this</h2>
           <p className="b2 text-muted-foreground mx-auto mt-4 max-w-[34rem]">
             START Vienna&rsquo;s organizers and HOIV, in the room with you all weekend.
           </p>
         </div>
 
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
           {hosts.map((h) => (
             <li
               key={h.name}
-              className="border-border bg-secondary flex min-h-44 flex-col items-center gap-4 rounded-2xl border p-6 pb-12 text-center"
+              className="border-border bg-secondary flex flex-row items-center gap-4 rounded-2xl border p-4 text-left sm:min-h-44 sm:flex-col sm:gap-4 sm:p-6 sm:pb-12 sm:text-center"
             >
               <div
-                className={`flex h-20 w-20 shrink-0 items-center justify-center rounded-full ${h.bg}`}
+                className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full sm:h-20 sm:w-20 ${h.bg}`}
                 aria-hidden
               >
                 <Image
@@ -75,7 +75,7 @@ export function Hosts() {
                 />
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-0.5 sm:gap-1">
                 <h3 className="h4">{h.name}</h3>
                 <p className="b3 text-muted-foreground">{h.role}</p>
               </div>

@@ -44,15 +44,16 @@ const cases: Case[] = [
 
 export function CaseTabs() {
   return (
-    <section id="cases" className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 text-center">
+    <section id="cases" className="py-14 lg:py-28">
+      <div className="container mx-auto px-5 text-center">
         <h2 className="h2">The cases</h2>
         <p className="b2 text-muted-foreground mx-auto mt-4 max-w-[36rem]">
-          Pick a case partner. Build something they actually want. More cases announcing soon.
+          Pick a case partner. Build something they actually want. <br /> More cases announcing
+          soon.
         </p>
       </div>
 
-      <div className="container mx-auto mt-12 max-w-5xl px-4 lg:mt-16">
+      <div className="container mx-auto mt-10 max-w-5xl px-5 lg:mt-16">
         <Tabs defaultValue={cases[0]!.id} aria-label="Case partners">
           <TabsList>
             {cases.map((c) => (
@@ -65,24 +66,24 @@ export function CaseTabs() {
 
           {cases.map((c) => (
             <TabsPanel key={c.id} value={c.id}>
-              <div className="mt-10 grid items-stretch gap-10 lg:mt-14 lg:grid-cols-[5fr_6fr] lg:gap-14">
+              <div className="mt-8 grid items-stretch gap-6 lg:mt-14 lg:grid-cols-[5fr_6fr] lg:gap-14">
                 <div
-                  className={`flex aspect-[4/3] items-center justify-center rounded-2xl px-12 lg:aspect-auto lg:min-h-[22rem] ${c.panelClassName}`}
+                  className={`flex aspect-[16/9] items-center justify-center rounded-2xl px-8 lg:aspect-auto lg:min-h-[22rem] lg:px-12 ${c.panelClassName}`}
                 >
                   <Image
                     src={c.logo}
                     alt={`${c.partner} logo`}
                     width={320}
                     height={120}
-                    className="h-auto w-full max-w-[14rem] object-contain"
+                    className="h-auto w-full max-w-[12rem] object-contain lg:max-w-[14rem]"
                   />
                 </div>
 
                 <div className="flex flex-col justify-center">
                   <p className="eyebrow text-muted-foreground">{c.partner}</p>
                   <h3 className="h3 mt-3">{c.category}</h3>
-                  <p className="b1 text-foreground/85 mt-5">{c.problem}</p>
-                  <p className="b2 text-muted-foreground mt-5">
+                  <p className="b1 text-foreground/85 mt-4">{c.problem}</p>
+                  <p className="b2 text-muted-foreground mt-4">
                     <span className="text-foreground font-medium">What you’ll build: </span>
                     {c.build}
                   </p>
@@ -90,7 +91,7 @@ export function CaseTabs() {
                     href={APPLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="b2 text-foreground focus-visible:ring-ring group mt-7 inline-flex items-center gap-1.5 rounded-md font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-2"
+                    className="b2 text-foreground focus-visible:ring-ring group mt-6 inline-flex items-center gap-1.5 rounded-md font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-2"
                   >
                     Apply now
                     <span
