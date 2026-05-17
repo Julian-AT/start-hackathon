@@ -78,7 +78,7 @@ export function CaseTabs() {
                 <div>
                   <p className="eyebrow text-muted-foreground">{c.partner}</p>
                   <h3 className="h3 mt-3">{c.category}</h3>
-                  <p className="b1 text-dark-2 mt-5">{c.problem}</p>
+                  <p className="b1 text-foreground/85 mt-5">{c.problem}</p>
                   <p className="b2 text-muted-foreground mt-6">
                     <span className="text-foreground font-medium">What you’ll build: </span>
                     {c.build}

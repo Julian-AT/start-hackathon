@@ -14,7 +14,7 @@ export function LogoStartHack({ className, ...props }: ComponentPropsWithoutRef<
         className="h-8 w-auto shrink-0"
         aria-hidden="true"
       />
-      <span className="text-dark-1 text-lg font-medium tracking-tight">START HACK Vienna</span>
+      <span className="text-foreground b1 font-medium tracking-tight">START HACK Vienna</span>
     </div>
   );
 }

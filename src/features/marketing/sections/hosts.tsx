@@ -86,7 +86,7 @@ export function Hosts() {
                     href={h.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="b3 text-dark-2 hover:text-foreground mt-auto underline-offset-4 transition-colors hover:underline"
+                    className="b3 text-muted-foreground hover:text-foreground mt-auto underline-offset-4 transition-colors hover:underline"
                   >
                     {h.handle}
                   </Link>

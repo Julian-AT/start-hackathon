@@ -26,7 +26,7 @@ export function Hero() {
           START HACK <br className="sm:hidden" />
           Vienna &rsquo;26
         </h1>
-        <p className="b1 text-dark-2 mx-auto mb-8 max-w-[36ch] text-balance">
+        <p className="b1 text-muted-foreground mx-auto mb-8 max-w-[36ch] text-balance">
           24 hours. 4 real cases. 100 builders. <br className="sm:hidden" /> One weekend that hits.
         </p>
         <Button
