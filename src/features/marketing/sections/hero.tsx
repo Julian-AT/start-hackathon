@@ -25,7 +25,7 @@ export function Hero() {
         </div>
 
         <h1 className="h1 -mt-12 mb-5 text-6xl font-medium">
-          START Hack <br />
+          START HACK <br />
           Vienna &rsquo;26
         </h1>
         <p className="b1 text-dark-2 mx-auto mb-4 max-w-[36ch]">

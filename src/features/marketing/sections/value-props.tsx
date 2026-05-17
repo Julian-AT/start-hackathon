@@ -10,17 +10,17 @@ const features: Feature[] = [
   {
     title: "Real challenges from real companies",
     body: "Four case partners bring problems they actually want solved. Pick your case, get matched with a team, build for 24 hours.",
-    icon: "/images/folder.svg",
+    icon: "/images/mascot/1.png",
   },
   {
     title: "Mentors in the room with you",
     body: "Engineers and founders from each case partner are on-site to help you make decisions and unblock your build.",
-    icon: "/images/collaborate.svg",
+    icon: "/images/mascot/2.png",
   },
   {
     title: "10,000+ EUR prize pool",
     body: "Track Winners, Overall Winner, and a crowd-voted Community Award. Plus an MIT-licensed GitHub project to take with you.",
-    icon: "/images/quiz.svg",
+    icon: "/images/mascot/3.png",
   },
 ];
 
@@ -68,20 +68,20 @@ export function ValueProps() {
           {features.map((f) => (
             <div
               key={f.title}
-              className="flex max-w-[16rem] flex-col items-center justify-center gap-4 text-center"
+              className="flex max-w-[32rem] flex-col items-center justify-center gap-4 text-center"
             >
-              <div className="flex items-center justify-center" style={{ height: 160, width: 160 }}>
+              <div className="flex h-64 w-64 items-center justify-center">
                 <Image
                   src={f.icon}
                   alt=""
-                  width={160}
-                  height={160}
+                  width={256}
+                  height={256}
                   className="h-auto w-full"
                   unoptimized
                 />
               </div>
-              <h3 className="h4">{f.title}</h3>
-              <p className="b2 text-dark-3 max-w-[28ch]">{f.body}</p>
+              <h3 className="h3">{f.title}</h3>
+              <p className="b2 text-dark-3 max-w-[34ch]">{f.body}</p>
             </div>
           ))}
         </div>

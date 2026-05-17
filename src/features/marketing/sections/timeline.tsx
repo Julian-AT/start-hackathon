@@ -18,7 +18,7 @@ const steps: Step[] = [
     bg: "bg-blue-3",
     text: "text-blue-1",
     rotate: "rotate-[-10.355deg]",
-    icon: "/images/quiz.svg",
+    icon: "/images/mascot/4.png",
   },
   {
     number: "02",
@@ -27,7 +27,7 @@ const steps: Step[] = [
     bg: "bg-yellow-2",
     text: "text-yellow-1",
     rotate: "rotate-[2.391deg]",
-    icon: "/images/collaborate.svg",
+    icon: "/images/mascot/5.png",
   },
   {
     number: "03",
@@ -36,7 +36,7 @@ const steps: Step[] = [
     bg: "bg-yellow-3",
     text: "text-yellow-1",
     rotate: "rotate-[13.222deg]",
-    icon: "/images/cube.svg",
+    icon: "/images/mascot/6.png",
   },
   {
     number: "04",
@@ -45,7 +45,7 @@ const steps: Step[] = [
     bg: "bg-pink-2",
     text: "text-pink-1",
     rotate: "rotate-[-7.758deg]",
-    icon: "/images/folder.svg",
+    icon: "/images/mascot/7.png",
   },
   {
     number: "05",
@@ -54,7 +54,7 @@ const steps: Step[] = [
     bg: "bg-green-3",
     text: "text-green-1",
     rotate: "rotate-[9.399deg]",
-    icon: "/images/snake.svg",
+    icon: "/images/mascot/8.png",
   },
 ];
 

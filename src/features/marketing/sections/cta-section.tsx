@@ -29,7 +29,7 @@ export function CtaSection() {
               draggable={false}
             >
               <Image
-                src="/images/snake.svg"
+                src="/images/mascot/8.png"
                 alt=""
                 width={400}
                 height={300}
