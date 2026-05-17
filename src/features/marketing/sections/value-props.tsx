@@ -26,8 +26,38 @@ const features: Feature[] = [
 
 export function ValueProps() {
   return (
-    <section id="about" className="py-20 lg:py-28">
-      <div className="container mx-auto max-w-2xl px-4">
+    <section id="about" className="relative py-20 lg:py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 left-0 hidden h-full w-[clamp(140px,16vw,260px)] lg:block"
+      >
+        <div className="sticky top-32">
+          <Image
+            src="/images/left-side.png"
+            alt=""
+            width={632}
+            height={1526}
+            className="h-auto w-full opacity-70"
+          />
+        </div>
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 right-0 hidden h-full w-[clamp(140px,16vw,260px)] lg:block"
+      >
+        <div className="sticky top-32">
+          <Image
+            src="/images/right-side.png"
+            alt=""
+            width={676}
+            height={1564}
+            className="h-auto w-full opacity-70"
+          />
+        </div>
+      </div>
+
+      <div className="relative container mx-auto max-w-2xl px-4">
         <h2 className="h2 mb-16 text-center lg:mb-20">What you get for showing up</h2>
         <div className="flex flex-col items-center gap-20 lg:gap-24">
           {features.map((f) => (
