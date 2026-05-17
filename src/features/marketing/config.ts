@@ -5,5 +5,5 @@ export const navLinks = [
   { label: "Cases", href: "#cases" },
   { label: "How it runs", href: "#flow" },
   { label: "Hosts", href: "#hosts" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Basics", href: "#basics" },
 ];
