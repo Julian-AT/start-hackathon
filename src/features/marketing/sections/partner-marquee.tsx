@@ -16,13 +16,13 @@ const partners: Partner[] = [
 
 export function PartnerMarquee() {
   return (
-    <section className="py-14 pb-16">
-      <div className="container mx-auto px-4 md:px-48">
-        <p className="b3 text-dark-3 text-center font-medium tracking-wider uppercase">
+    <section className="py-12 lg:py-16">
+      <div className="container mx-auto max-w-5xl px-4">
+        <p className="eyebrow text-muted-foreground text-center">
           Backed by builders, for builders
         </p>
-        <div className="relative mt-4">
-          <Marquee className="max-w-full [--duration:40s]">
+        <div className="relative mt-6">
+          <Marquee className="max-w-full [--duration:40s]" repeat={3}>
             {partners.map((p) => (
               <Image
                 key={p.name}
@@ -30,13 +30,13 @@ export function PartnerMarquee() {
                 alt={p.name}
                 width={200}
                 height={40}
-                className="h-10 w-auto object-contain px-1"
+                className="h-9 w-auto object-contain px-2 opacity-80"
                 unoptimized
               />
             ))}
           </Marquee>
-          <div className="from-light-1 pointer-events-none absolute inset-y-0 left-0 h-full w-1/3 bg-gradient-to-r" />
-          <div className="from-light-1 pointer-events-none absolute inset-y-0 right-0 h-full w-1/3 bg-gradient-to-l" />
+          <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r" />
+          <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l" />
         </div>
       </div>
     </section>
