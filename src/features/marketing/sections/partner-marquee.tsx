@@ -34,8 +34,8 @@ export function PartnerMarquee() {
               />
             ))}
           </Marquee>
-          <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r" />
-          <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l" />
+          <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r sm:w-24" />
+          <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l sm:w-24" />
         </div>
       </div>
     </section>
