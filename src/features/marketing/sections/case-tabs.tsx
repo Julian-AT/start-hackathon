@@ -11,7 +11,8 @@ type Case = {
   category: string;
   problem: string;
   build: string;
-  image: string;
+  logo: string;
+  panelClassName: string;
 };
 
 const cases: Case[] = [
@@ -24,7 +25,8 @@ const cases: Case[] = [
       "Real-time voice agents that hold a conversation, retrieve context, and act — without latency that breaks the illusion.",
     build:
       "A working voice-AI feature on top of fonio’s infra: a use case, a demo, and a pitch on why their voice stack should power it.",
-    image: "/partners/fonio.png",
+    logo: "/partners/fonio.png",
+    panelClassName: "bg-blue-3 text-blue-1",
   },
   {
     id: "techbold",
@@ -35,7 +37,8 @@ const cases: Case[] = [
       "Mid-market IT teams drown in tickets, manual provisioning, and drift between systems. There’s a better automation layer waiting to be built.",
     build:
       "An automation or AI-assisted tool that meaningfully cuts time on a real techbold workflow. Bonus points for measurable wins.",
-    image: "/images/techbold.jpg",
+    logo: "/partners/techbold.png",
+    panelClassName: "bg-yellow-3 text-yellow-1",
   },
 ];
 
@@ -62,24 +65,24 @@ export function CaseTabs() {
 
           {cases.map((c) => (
             <TabsPanel key={c.id} value={c.id}>
-              <div className="mt-10 grid items-center gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-16">
-                <div className="border-border bg-card overflow-hidden rounded-2xl border">
-                  <div className="relative aspect-[4/3] w-full">
-                    <Image
-                      src={c.image}
-                      alt={`${c.partner} case preview`}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 32rem, 100vw"
-                    />
-                  </div>
+              <div className="mt-10 grid items-stretch gap-10 lg:mt-14 lg:grid-cols-[5fr_6fr] lg:gap-14">
+                <div
+                  className={`flex aspect-[4/3] items-center justify-center rounded-2xl px-12 lg:aspect-auto lg:min-h-[22rem] ${c.panelClassName}`}
+                >
+                  <Image
+                    src={c.logo}
+                    alt={`${c.partner} logo`}
+                    width={320}
+                    height={120}
+                    className="h-auto w-full max-w-[14rem] object-contain"
+                  />
                 </div>
 
-                <div>
+                <div className="flex flex-col justify-center">
                   <p className="eyebrow text-muted-foreground">{c.partner}</p>
                   <h3 className="h3 mt-3">{c.category}</h3>
                   <p className="b1 text-foreground/85 mt-5">{c.problem}</p>
-                  <p className="b2 text-muted-foreground mt-6">
+                  <p className="b2 text-muted-foreground mt-5">
                     <span className="text-foreground font-medium">What you’ll build: </span>
                     {c.build}
                   </p>
@@ -87,7 +90,7 @@ export function CaseTabs() {
                     href={APPLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="b2 text-foreground focus-visible:ring-ring group mt-8 inline-flex items-center gap-1.5 rounded-md font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-2"
+                    className="b2 text-foreground focus-visible:ring-ring group mt-7 inline-flex items-center gap-1.5 rounded-md font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-2"
                   >
                     Apply now
                     <span
