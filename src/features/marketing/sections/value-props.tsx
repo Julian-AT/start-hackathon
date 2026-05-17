@@ -71,14 +71,7 @@ export function ValueProps() {
               className="flex max-w-[32rem] flex-col items-center justify-center gap-4 text-center"
             >
               <div className="flex h-64 w-64 items-center justify-center">
-                <Image
-                  src={f.icon}
-                  alt=""
-                  width={256}
-                  height={256}
-                  className="h-auto w-full"
-                  unoptimized
-                />
+                <Image src={f.icon} alt="" width={256} height={256} className="h-auto w-full" />
               </div>
               <h3 className="h3 text-balance">{f.title}</h3>
               <p className="b2 text-muted-foreground max-w-[34ch] text-balance">{f.body}</p>

@@ -31,7 +31,6 @@ export function PartnerMarquee() {
                 width={200}
                 height={40}
                 className="h-9 w-auto object-contain px-2 opacity-80"
-                unoptimized
               />
             ))}
           </Marquee>

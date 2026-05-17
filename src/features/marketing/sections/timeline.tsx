@@ -70,14 +70,7 @@ export function Timeline() {
               className={`sticky top-24 flex min-h-80 w-[min(20rem,calc(100vw-2.5rem))] flex-col justify-end p-8 md:min-h-96 md:w-80 lg:top-32 ${step.bg} ${step.text} ${step.rotate}`}
             >
               <div className="mx-auto flex max-w-[65%] grow items-center justify-center">
-                <Image
-                  src={step.icon}
-                  alt=""
-                  width={140}
-                  height={140}
-                  className="h-auto w-full"
-                  unoptimized
-                />
+                <Image src={step.icon} alt="" width={140} height={140} className="h-auto w-full" />
               </div>
               <div className="flex flex-col gap-3">
                 <span className="b3 opacity-60">Step {step.number}</span>

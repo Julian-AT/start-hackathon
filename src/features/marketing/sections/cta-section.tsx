@@ -31,7 +31,6 @@ export function CtaSection() {
                 width={400}
                 height={300}
                 className="h-auto w-full max-w-[18rem] md:max-w-[20rem] lg:max-w-[22rem]"
-                unoptimized
               />
             </div>
           </div>
