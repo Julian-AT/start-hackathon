@@ -30,6 +30,7 @@ export function Hero() {
           24 hours. 4 real cases. 100 builders. <br className="sm:hidden" /> One weekend that hits.
         </p>
         <Button
+          nativeButton={false}
           render={
             <Link
               href={APPLY_URL}

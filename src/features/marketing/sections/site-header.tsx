@@ -161,6 +161,7 @@ export function SiteHeader() {
 
           <div className="hidden lg:flex lg:items-center">
             <Button
+              nativeButton={false}
               render={
                 <Link
                   href={APPLY_URL}
