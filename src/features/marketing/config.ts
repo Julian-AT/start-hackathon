@@ -1,6 +1,6 @@
 export const APPLY_URL = "https://luma.com/sp3ivels";
 
-export const SITE_URL = "https://starthack-vienna.com";
+export const SITE_URL = "https://hack.start-vienna.com";
 
 export const EVENT = {
   name: "START Hack Vienna '26",
