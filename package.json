@@ -10,6 +10,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "bot:dev": "tsx src/bot/index.ts",
+    "bot:start": "tsx src/bot/index.ts",
+    "bot:ingest": "tsx src/bot/ingest.ts",
+    "bot:test": "vitest run src/bot",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
@@ -29,15 +33,20 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
+    "@google/genai": "^2.8.0",
+    "@qdrant/js-client-rest": "^1.18.0",
     "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "discord.js": "^14.26.4",
+    "dotenv": "^17.4.2",
     "geist": "^1.7.0",
     "hugeicons-react": "^0.4.0",
-    "next": "16.2.1",
+    "next": "16.2.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "tailwind-merge": "^3.5.0",
+    "tsx": "^4.22.4",
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
@@ -46,7 +55,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.1",
+    "eslint-config-next": "16.2.7",
     "eslint-plugin-simple-import-sort": "^13.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^9.1.7",
@@ -54,6 +63,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.8"
   }
 }

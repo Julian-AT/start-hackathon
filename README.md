@@ -33,8 +33,22 @@ npm run dev        # http://localhost:3000
 | `npm run format`       | Prettier write                                       |
 | `npm run format:check` | Prettier check                                       |
 | `npm run check`        | lint + typecheck + format:check + build (used by CI) |
+| `npm run bot:ingest`   | Rebuild the Qdrant knowledge collection              |
+| `npm run bot:dev`      | Run the Discord RAG bot locally                      |
+| `npm run bot:test`     | Run bot unit tests                                   |
 
 A pre-commit hook runs `lint-staged` to format and lint staged files.
+
+## Discord RAG bot
+
+The Discord bot is a separate Node worker under `src/bot/`; it does not add API routes or runtime fetching to the marketing site.
+
+1. Copy `.env.example` to `.env.local` and fill `DISCORD_TOKEN`, `GEMINI_API_KEY`, and Qdrant settings.
+2. Start local Qdrant with `docker compose --profile bot up qdrant`.
+3. Run `npm run bot:ingest` to index `knowledge/*.md` plus the site content from `src/features/marketing/content.ts`.
+4. Run `npm run bot:dev` to start the worker.
+
+The bot only responds when directly mentioned, ignores non-questions, and allows each Discord user one accepted question every five minutes.
 
 ## Structure
 

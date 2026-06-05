@@ -32,6 +32,25 @@ RUN --mount=type=cache,target=/root/.npm \
   fi
 
 # ============================================
+# Bot runner
+# ============================================
+
+FROM node:${NODE_VERSION} AS bot-runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY package.json package-lock.json* tsconfig.json ./
+COPY src ./src
+COPY knowledge ./knowledge
+
+USER node
+
+CMD ["npm", "run", "bot:start"]
+
+# ============================================
 # Stage 2: Build Next.js application in standalone mode
 # ============================================
 
