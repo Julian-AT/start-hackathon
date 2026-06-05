@@ -1,75 +1,50 @@
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <explanation> */
 "use client";
 
+import { ArrowDown01Icon } from "hugeicons-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLinkItem,
+  DropdownMenuPortal,
+  DropdownMenuPositioner,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { APPLY_URL, navLinks } from "@/features/marketing/config";
+import { navLinks } from "@/features/marketing/config";
+import { DISCORD_URL, trackDetails } from "@/features/marketing/content";
 import { LogoStartHack } from "@/features/marketing/icons";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-
-  useEffect(() => {
-    let lastY = window.scrollY;
-    let ticking = false;
-
-    const update = () => {
-      const currentY = window.scrollY;
-      const delta = currentY - lastY;
-
-      if (currentY < 80 || open) {
-        setHidden(false);
-      } else if (delta > 4) {
-        setHidden(true);
-      } else if (delta < -4) {
-        setHidden(false);
-      }
-
-      lastY = currentY;
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [open]);
 
   return (
-    <header
-      className={`bg-background fixed top-0 z-50 w-full transition-transform duration-300 ease-out ${
-        hidden ? "-translate-y-full" : "translate-y-0"
-      }`}
-    >
+    <header className="border-border/70 bg-background/95 fixed top-0 z-50 w-full backdrop-blur-md">
       <Link
-        href={APPLY_URL}
+        href={DISCORD_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="bg-announcement text-announcement-foreground group flex h-9 w-full items-center justify-center px-4 transition-[filter] hover:brightness-[0.97]"
       >
         <span className="b3 mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-3 text-center font-semibold">
           <span className="leading-none">
-            Early Bird applications are open
+            Applications are closed
             <span className="hidden font-normal lg:inline">
               {" "}
-              · Rolling admissions, hear back fast.
+              - join Discord for participant updates.
             </span>
           </span>
-          <span className="inline-flex items-center gap-1 leading-none">
-            Apply now
+          <span className="hidden items-center gap-1 leading-none sm:inline-flex">
+            Join Discord
             <span
               aria-hidden
               className="inline-block transition-transform group-hover:translate-x-0.5"
             >
-              →
+              -&gt;
             </span>
           </span>
         </span>
@@ -112,31 +87,52 @@ export function SiteHeader() {
               </svg>
             </SheetTrigger>
 
-            <SheetContent side="right" className="px-6 py-6">
+            <SheetContent side="right" className="bg-background border-none px-6 py-6">
               <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <nav className="mt-2 flex flex-col gap-1" aria-label="Mobile">
-                {navLinks.map((l) => (
-                  <SheetClose
-                    key={l.label}
-                    render={
-                      <Link
-                        href={l.href}
-                        className="b1 text-foreground hover:bg-foreground/[0.06] rounded-md px-3 py-3 transition-colors"
-                      >
-                        {l.label}
-                      </Link>
-                    }
-                  />
+              <nav className="mt-2 flex flex-col gap-5" aria-label="Mobile">
+                {navLinks.map((link) => (
+                  <div key={link.label}>
+                    <SheetClose
+                      nativeButton={false}
+                      render={
+                        <Link
+                          href={link.href}
+                          className="b1 text-foreground hover:bg-foreground/[0.06] rounded-md px-3 py-3 transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      }
+                    />
+                    {link.label === "Tracks" && (
+                      <div className="border-secondary ml-3 grid border-l pl-3">
+                        {trackDetails.map((track) => (
+                          <SheetClose
+                            key={track.slug}
+                            nativeButton={false}
+                            render={
+                              <Link
+                                href={`/tracks/${track.slug}`}
+                                className="b3 text-muted-foreground hover:text-foreground rounded-md px-3 py-2 transition-colors"
+                              >
+                                {track.name}
+                              </Link>
+                            }
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
                 <SheetClose
+                  nativeButton={false}
                   render={
                     <Link
-                      href={APPLY_URL}
+                      href={DISCORD_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary text-primary-foreground mt-3 inline-flex h-11 items-center justify-center rounded-md px-5 text-sm font-medium"
+                      className="bg-primary text-primary-foreground mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md px-5 text-sm font-medium"
                     >
-                      Request to Join
+                      Join Discord
                     </Link>
                   }
                 />
@@ -148,34 +144,75 @@ export function SiteHeader() {
             className="text-foreground hidden items-center gap-1 lg:flex xl:gap-3"
             aria-label="Primary"
           >
-            {navLinks.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                className="b3 hover:text-muted-foreground inline-flex h-8 items-center rounded-md px-2 transition-colors"
-              >
-                {l.label}
-              </Link>
+            {navLinks.map((link) => (
+              <div key={link.label}>
+                {link.label === "Tracks" ? (
+                  <TracksDropdown />
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="b3 hover:text-muted-foreground inline-flex h-8 items-center rounded-md px-2 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </div>
             ))}
           </nav>
 
           <div className="hidden lg:flex lg:items-center">
-            <Button
-              nativeButton={false}
-              render={
-                <Link
-                  href={APPLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 h-8 rounded-md px-3.5 text-[13px] font-medium"
-                >
-                  Request to Join
-                </Link>
-              }
-            />
+            <Link
+              href={DISCORD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring inline-flex h-8 items-center gap-1.5 rounded-md px-3.5 text-[13px] font-medium outline-none focus-visible:ring-2"
+            >
+              Join Discord
+            </Link>
           </div>
         </div>
       </div>
     </header>
+  );
+}
+
+function TracksDropdown() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        openOnHover
+        render={
+          <button
+            type="button"
+            className="b3 hover:text-muted-foreground focus-visible:ring-ring inline-flex h-8 items-center gap-1 rounded-md px-2 transition-colors outline-none focus-visible:ring-2"
+          />
+        }
+      >
+        Tracks
+        <ArrowDown01Icon className="size-3.5" strokeWidth={1.8} />
+      </DropdownMenuTrigger>
+      <DropdownMenuPortal>
+        <DropdownMenuPositioner>
+          <DropdownMenuContent className="bg-background">
+            <DropdownMenuLinkItem render={<Link href="/#tracks" />}>
+              All tracks
+            </DropdownMenuLinkItem>
+            <DropdownMenuSeparator />
+            {trackDetails.map((track) => (
+              <DropdownMenuLinkItem
+                key={track.slug}
+                render={<Link href={`/tracks/${track.slug}`} />}
+                className="hover:bg-background"
+              >
+                <span className="flex flex-col gap-0.5">
+                  <span className="font-medium">{track.name}</span>
+                  <span className="text-muted-foreground text-xs">{track.category}</span>
+                </span>
+              </DropdownMenuLinkItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenuPositioner>
+      </DropdownMenuPortal>
+    </DropdownMenu>
   );
 }

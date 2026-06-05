@@ -57,15 +57,20 @@ export function ValueProps() {
         </div>
       </div>
 
-      <div className="relative container mx-auto max-w-2xl px-5">
-        <h2 className="h2 mb-12 text-center lg:mb-20">What you get for showing up</h2>
+      <div className="relative container mx-auto w-full max-w-2xl px-5">
+        <h2 className="h2 mx-auto mb-12 max-w-[13ch] text-center sm:max-w-none lg:mb-20">
+          What you get for showing up
+        </h2>
         <div className="flex flex-col items-center gap-14 lg:gap-24">
           {features.map((f) => (
-            <div key={f.title} className="flex max-w-md flex-col items-center gap-4 text-center">
+            <div
+              key={f.title}
+              className="flex w-full max-w-md flex-col items-center gap-4 text-center"
+            >
               <div className="flex h-44 w-44 items-center justify-center sm:h-64 sm:w-64">
                 <Image src={f.icon} alt="" width={256} height={256} className="h-auto w-full" />
               </div>
-              <h3 className="h3">{f.title}</h3>
+              <h3 className="h3 max-w-[18ch]">{f.title}</h3>
               <p className="b2 text-muted-foreground">{f.body}</p>
             </div>
           ))}

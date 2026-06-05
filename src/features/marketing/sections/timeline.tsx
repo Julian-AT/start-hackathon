@@ -1,86 +1,87 @@
-import Image from "next/image";
-
-type Step = {
-  number: string;
-  title: string;
-  body: string;
-  bg: string;
-  text: string;
-  rotate: string;
-  icon: string;
-};
-
-const steps: Step[] = [
-  {
-    number: "01",
-    title: "Apply",
-    body: "Request to Join on Luma. Approval-based, rolling. Apply early, hear back fast.",
-    bg: "bg-[#bfbdc1]",
-    text: "text-[#37323e]",
-    rotate: "motion-safe:-rotate-[6deg]",
-    icon: "/images/mascot/4.png",
-  },
-  {
-    number: "02",
-    title: "Get matched",
-    body: "Bring a team of 2–4 or come solo and we’ll match you on-site. Pick your case, meet your partner.",
-    bg: "bg-[#6d6a75]",
-    text: "text-white",
-    rotate: "motion-safe:rotate-[4deg]",
-    icon: "/images/mascot/5.png",
-  },
-  {
-    number: "03",
-    title: "Build for 24 hours",
-    body: "Code, design, ship. Mentors from each case partner stay in the room. Catering, food truck, coffee on the house.",
-    bg: "bg-yellow-1",
-    text: "text-white",
-    rotate: "motion-safe:-rotate-[3deg]",
-    icon: "/images/mascot/6.png",
-  },
-  {
-    number: "04",
-    title: "Pitch to the jury",
-    body: "Code freezes Sunday at 14:00. Each case partner picks their Track Winner. The four winners then pitch to an external jury of VCs and founders.",
-    bg: "bg-yellow-2",
-    text: "text-[#37323e]",
-    rotate: "motion-safe:rotate-[5deg]",
-    icon: "/images/mascot/7.png",
-  },
-  {
-    number: "05",
-    title: "Win",
-    body: "Track Winners, an Overall Winner trophy, and a crowd-voted Community Award. Plus a public MIT-licensed GitHub project for everyone.",
-    bg: "bg-announcement",
-    text: "text-[#37323e]",
-    rotate: "motion-safe:-rotate-[4deg]",
-    icon: "/images/mascot/8.png",
-  },
-];
+import { Badge } from "@/components/ui/badge";
+import { type ScheduleDay, scheduleDays } from "@/features/marketing/content";
+import { cn } from "@/lib/utils";
 
 export function Timeline() {
   return (
-    <section id="flow" className="py-20 lg:py-28">
-      <div className="container mx-auto flex max-w-2xl flex-col items-center gap-16 px-4">
-        <h2 className="h2 max-w-[30rem] text-center">How the weekend runs</h2>
-        <ol className="flex flex-col items-center gap-20">
-          {steps.map((step) => (
-            <li
-              key={step.title}
-              className={`sticky top-24 flex min-h-80 w-[min(20rem,calc(100vw-2.5rem))] flex-col justify-end p-8 md:min-h-96 md:w-80 lg:top-32 ${step.bg} ${step.text} ${step.rotate}`}
-            >
-              <div className="mx-auto flex max-w-[65%] grow items-center justify-center">
-                <Image src={step.icon} alt="" width={140} height={140} className="h-auto w-full" />
-              </div>
-              <div className="flex flex-col gap-3">
-                <span className="b3 opacity-60">Step {step.number}</span>
-                <h3 className="h3">{step.title}</h3>
-                <p className="b2 opacity-80">{step.body}</p>
-              </div>
-            </li>
+    <section id="schedule" className="py-14 lg:py-24">
+      <div className="container mx-auto max-w-5xl px-5">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow text-muted-foreground">Timeline</p>
+          <h2 className="h2 mt-4">How the weekend runs</h2>
+          <p className="b2 text-muted-foreground mt-4">
+            Two days, one simple rhythm: form your team, get allocated, build, submit, pitch, and
+            close the weekend together.
+          </p>
+        </div>
+
+        <div className="mt-12 space-y-16">
+          {scheduleDays.map((day) => (
+            <ScheduleTimelineDay key={day.date} day={day} />
           ))}
-        </ol>
+        </div>
       </div>
+    </section>
+  );
+}
+
+function ScheduleTimelineDay({ day }: { day: ScheduleDay }) {
+  return (
+    <section>
+      <div className="mb-8 text-center">
+        <p className="eyebrow text-muted-foreground">{day.date}</p>
+        <h3 className="h3 mt-3">{day.title}</h3>
+      </div>
+
+      <ol className="mx-auto max-w-4xl">
+        {day.items.map((item, index) => (
+          <li
+            key={`${day.date}-${item.time}-${item.title}`}
+            id={`${day.date}-${index + 1}`}
+            className="relative flex scroll-mt-28 justify-end gap-2"
+          >
+            <div className="sticky top-24 hidden w-40 flex-col items-end gap-2 self-start pb-6 text-right md:flex">
+              <Badge className="bg-background text-foreground/90 h-auto rounded-md px-3 py-1.5 font-mono text-sm">
+                {item.time}
+              </Badge>
+              <div className="text-muted-foreground text-sm font-medium">{day.date}</div>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <div className="sticky top-24 flex size-6 items-center justify-center max-md:top-20">
+                <span className="bg-announcement size-4 rounded-full" />
+              </div>
+              <span
+                className={cn(
+                  "border-border relative -mt-0.5 w-px flex-1 border",
+                  index === day.items.length - 1 && "opacity-100",
+                )}
+                style={
+                  index === day.items.length - 1
+                    ? {
+                        maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                        WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
+                      }
+                    : undefined
+                }
+              />
+            </div>
+
+            <article className="flex flex-1 flex-col gap-3 pb-10 pl-4 md:pl-8 lg:pl-10">
+              <div className="flex flex-col items-start gap-2 md:hidden">
+                <Badge className="bg-foreground text-background h-auto rounded-md px-3 py-1.5 font-mono text-xs">
+                  {item.time}
+                </Badge>
+                <div className="text-muted-foreground text-sm font-medium">{day.date}</div>
+              </div>
+              <div className="border-border my-auto mt-3 flex h-full flex-col justify-center border-t p-5">
+                <h4 className="h4">{item.title}</h4>
+                <p className="b2 text-muted-foreground mt-2">{item.description}</p>
+              </div>
+            </article>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

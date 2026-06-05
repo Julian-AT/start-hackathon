@@ -4,21 +4,26 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata, Viewport } from "next";
 
-import { APPLY_URL, EVENT, SITE_URL } from "@/features/marketing/config";
+import { EVENT, SITE_URL } from "@/features/marketing/config";
+import { sponsors, tracks } from "@/features/marketing/content";
 
-const TITLE = `${EVENT.name} — ${EVENT.tagline}`;
+const TITLE = `${EVENT.name} - ${EVENT.tagline}`;
 const OG_IMAGE = {
   url: "/images/meta.png",
   width: 1640,
   height: 664,
-  alt: `${EVENT.name} — ${EVENT.tagline}`,
+  alt: `${EVENT.name} - ${EVENT.tagline}`,
 };
+
+const partnerKeywords = Array.from(
+  new Set([...tracks.map((track) => track.partner), ...sponsors.map((sponsor) => sponsor.name)]),
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: `%s — ${EVENT.name}`,
+    template: `%s - ${EVENT.name}`,
   },
   description: EVENT.description,
   applicationName: EVENT.name,
@@ -32,13 +37,14 @@ export const metadata: Metadata = {
     "hackathon 2026",
     "Austria hackathon",
     "AI hackathon Vienna",
-    "fonio.ai",
-    "techbold",
-    "HOIV",
-    "Lovable",
     "student builders",
     "founders",
     "engineering",
+    "voice AI",
+    "robotics",
+    "legal tech",
+    "smart glasses",
+    ...partnerKeywords,
   ],
   alternates: {
     canonical: "/",
@@ -122,14 +128,6 @@ const eventJsonLd = {
     "@type": "Organization",
     name: EVENT.shortName,
     url: SITE_URL,
-  },
-  offers: {
-    "@type": "Offer",
-    url: APPLY_URL,
-    price: "0",
-    priceCurrency: "EUR",
-    availability: "https://schema.org/InStock",
-    validFrom: "2026-01-01T00:00:00+01:00",
   },
   inLanguage: "en",
   isAccessibleForFree: true,

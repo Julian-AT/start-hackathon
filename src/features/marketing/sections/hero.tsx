@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { APPLY_URL } from "@/features/marketing/config";
+import { EVENT } from "@/features/marketing/config";
+import { DISCORD_URL } from "@/features/marketing/content";
 
 export function Hero() {
   return (
-    <section className="pt-10 pb-10 lg:pt-16 lg:pb-16">
-      <div className="container mx-auto flex max-w-2xl flex-col items-center px-5 text-center">
+    <section className="pt-10 pb-8 lg:pt-16 lg:pb-10">
+      <div className="container mx-auto flex w-full max-w-2xl flex-col items-center px-5 text-center">
         <div className="relative mx-auto aspect-square w-44 sm:w-56 lg:w-72">
           <video
             className="absolute inset-0 h-full w-full bg-transparent object-contain"
@@ -22,26 +22,22 @@ export function Hero() {
           </video>
         </div>
 
-        <h1 className="h1 -mt-6 mb-5 text-balance lg:-mt-6">
+        <p className="eyebrow text-muted-foreground -mt-4 mb-4 lg:-mt-6">{EVENT.venue}</p>
+        <h1 className="h1 mb-5 text-balance">
           START HACK <br />
           Vienna &rsquo;26
         </h1>
-        <p className="b1 text-muted-foreground mx-auto mb-6 max-w-[36ch] text-balance">
-          24 hours. 4 real cases. 100 builders. <br className="sm:hidden" /> One weekend that hits.
+        <p className="b1 text-muted-foreground mx-auto mb-6 w-full max-w-[28ch] text-balance sm:max-w-[36ch]">
+          24 hours. Five tracks. One weekend that hits.
         </p>
-        <Button
-          nativeButton={false}
-          render={
-            <Link
-              href={APPLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 rounded-md px-6 text-sm font-medium"
-            >
-              Request to Join
-            </Link>
-          }
-        />
+        <Link
+          href={DISCORD_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring inline-flex h-10 items-center gap-2 rounded-md px-6 text-sm font-medium outline-none focus-visible:ring-2"
+        >
+          Join Discord
+        </Link>
       </div>
     </section>
   );

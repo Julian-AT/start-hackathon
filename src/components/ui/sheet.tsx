@@ -26,7 +26,7 @@ function SheetBackdrop({ className, ...props }: ComponentProps<typeof DialogPrim
     <DialogPrimitive.Backdrop
       data-slot="sheet-backdrop"
       className={cn(
-        "fixed inset-0 z-50 bg-black/40 backdrop-blur-[2px]",
+        "bg-foreground/35 fixed inset-0 z-50 backdrop-blur-[2px]",
         "data-[ending-style]:opacity-0 data-[starting-style]:opacity-0",
         "transition-opacity duration-200",
         className,
@@ -56,7 +56,7 @@ function SheetContent({ className, side = "right", children, ...props }: SheetCo
       <DialogPrimitive.Popup
         data-slot="sheet-content"
         className={cn(
-          "bg-background fixed z-50 flex flex-col gap-6 shadow-xl outline-none",
+          "bg-popover shadow-foreground/10 fixed z-50 flex flex-col gap-6 shadow-xl outline-none",
           "transition-transform duration-300 ease-out",
           sideStyles[side],
           className,
