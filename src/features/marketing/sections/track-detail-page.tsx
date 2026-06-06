@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { DISCORD_URL, type TrackDetail, tracks } from "@/features/marketing/content";
+import { DISCORD_URL, sharedMentors, type TrackDetail, tracks } from "@/features/marketing/content";
 
 type TrackDetailPageProps = {
   track: TrackDetail;
@@ -100,12 +100,21 @@ export function TrackDetailPage({ track }: TrackDetailPageProps) {
               />
             )}
 
+            {/* First prize item is the headline prize; the rest are support/perks shown under Resources. */}
+            {track.prizes && (
+              <TrackList
+                eyebrow="Prize"
+                title="Prize for the winning team"
+                items={track.prizes.items.slice(0, 1)}
+              />
+            )}
+
             {(track.resources || track.prizes) && (
               <TrackList
                 eyebrow="Resources"
                 title="Resources and support"
                 items={[
-                  ...(track.prizes?.items ?? []),
+                  ...(track.prizes?.items.slice(1) ?? []),
                   ...(track.resources?.map(
                     (resource) => `${resource.name}: ${resource.description}`,
                   ) ?? []),
@@ -118,6 +127,14 @@ export function TrackDetailPage({ track }: TrackDetailPageProps) {
                 eyebrow="Mentors / Jury"
                 title="People in the room"
                 items={track.people.map((person) => `${person.name}: ${person.role}`)}
+              />
+            )}
+
+            {track.people && (
+              <TrackList
+                eyebrow="Mentors / Jury"
+                title="Mentors for all cases"
+                items={sharedMentors.map((person) => `${person.name}: ${person.role}`)}
               />
             )}
           </div>

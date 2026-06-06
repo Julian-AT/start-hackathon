@@ -84,13 +84,6 @@ export type Sponsor = {
   website: string;
 };
 
-export type ContentConflict = {
-  topic: string;
-  currentSite: string;
-  builderBase: string;
-  recommendation: string;
-};
-
 export const DISCORD_URL = "https://discord.gg/ZB29cGQr";
 export const TEAM_FORMATION_DISCORD_URL = "https://discord.gg/BmvgNZrr";
 
@@ -221,7 +214,7 @@ export const trackDetails: TrackDetail[] = [
       "Everyone passes through team formation before the build begins. It is the lobby for meeting teammates, creating a team, and submitting ranked track preferences.",
     logo: "/images/logo_transparent.png",
     panelClassName: "bg-background text-foreground",
-    facts: ["Teams of 2-4", "Rank your top 3", "One build track per team"],
+    facts: ["Teams of 2-4", "Rank your top 5", "One build track per team"],
     challenge: {
       title: "How allocation works",
       paragraphs: [
@@ -232,7 +225,7 @@ export const trackDetails: TrackDetail[] = [
       requirementsTitle: "Before hacking starts",
       requirements: [
         "Form a team of 2-4 people",
-        "Rank your top 3 tracks",
+        "Rank your top 5 tracks",
         "Submit one preference form per team",
       ],
     },
@@ -242,9 +235,9 @@ export const trackDetails: TrackDetail[] = [
         description: "Use the event Discord to find teammates and ask organizers for help.",
       },
       {
-        name: "BuilderBase team flow",
+        name: "Team formation form",
         description:
-          "Create or join your team, then submit track preferences through the event platform.",
+          "We email you a link to the telli team form at check-in. Use it to create or join your team and submit ranked track preferences.",
       },
     ],
     ctaLabel: "Join Discord",
@@ -310,8 +303,15 @@ export const trackDetails: TrackDetail[] = [
       },
     ],
     people: [
-      { name: "Nicolas Hosp", role: "Jury member, fonio" },
-      { name: "Kim", role: "Mentor, fonio.ai - details to confirm" },
+      {
+        name: "Marco Caputo",
+        role: "Mentor, fonio - in person Sat 13:00-14:00 and 17:00-18:00, Sun 10:00-11:00",
+      },
+      {
+        name: "Nicolas Hosp",
+        role: "Jury and mentor, fonio - in person Sat 13:00-14:00 and 17:00-18:00, Sun 10:00-11:00",
+      },
+      { name: "Kim", role: "Mentor, fonio - available on Discord" },
     ],
     resources: [
       {
@@ -388,8 +388,14 @@ export const trackDetails: TrackDetail[] = [
       },
     ],
     people: [
-      { name: "Christopher Chellakudam", role: "Senior Developer and AI Engineer" },
-      { name: "Benedikt Fritzenwallner", role: "Senior Developer and AI Engineer, techbold" },
+      {
+        name: "Christopher Chellakudam",
+        role: "Senior Developer and AI Engineer, techbold - available onsite",
+      },
+      {
+        name: "Benedikt Fritzenwallner",
+        role: "Senior Developer and AI Engineer, techbold - available onsite",
+      },
     ],
     resources: [
       {
@@ -466,9 +472,15 @@ export const trackDetails: TrackDetail[] = [
       },
     ],
     people: [
-      { name: "Max Pointinger", role: "Mentor and jury, Head of Product and Co-Founder" },
-      { name: "Hendrik Boettcher", role: "Mentor, AI Ops" },
-      { name: "Jakobus Schuster", role: "Mentor, CEO and Co-Founder" },
+      {
+        name: "Max Pointinger",
+        role: "Mentor and jury, Head of Product and Co-Founder - available onsite",
+      },
+      { name: "Hendrik Böttcher", role: "Mentor, AI Ops - available on Discord" },
+      {
+        name: "Jakobus Schuster",
+        role: "Mentor, CEO and Co-Founder - available on Discord, partly onsite",
+      },
     ],
     resources: [
       { name: "Company website", description: "notarity.com" },
@@ -476,7 +488,7 @@ export const trackDetails: TrackDetail[] = [
       {
         name: "Booking-form configuration",
         description:
-          "Representative product, country, participant, billing, shipping, consent, scenario, document, and sandbox endpoint material is provided on BuilderBase.",
+          "Representative product, country, participant, billing, shipping, consent, scenario, document, and sandbox endpoint material is shared by email or on Discord.",
       },
     ],
   },
@@ -537,7 +549,7 @@ export const trackDetails: TrackDetail[] = [
     people: [
       {
         name: "Sviat",
-        role: "Mentor, proximata - AI agentic pipelines, data analysis, ML, and cognitive science",
+        role: "Mentor, proximata - AI agentic pipelines, data analysis, ML, and cognitive science - available onsite",
       },
     ],
     resources: [
@@ -556,6 +568,14 @@ export const trackDetails: TrackDetail[] = [
         description: "Gemini Live API access, OpenClaw docs, and sandbox credentials.",
       },
     ],
+  },
+];
+
+export const sharedMentors: { name: string; role: string }[] = [
+  { name: "Cristian Livadaru", role: "n8n ambassador - mostly available on Day 1" },
+  {
+    name: "Gleb, Vlad, Sviat, and the proximata team",
+    role: "Available on the fourth floor in the Robotics Area",
   },
 ];
 
@@ -590,7 +610,7 @@ export const scheduleDays: ScheduleDay[] = [
         time: "12:30 - 12:45",
         title: "Finalize team structure and preferences",
         description:
-          "Create your team on BuilderBase, add your team members, and submit ranked track preferences.",
+          "Fill in the telli team form (link emailed at check-in), add your team members, and submit ranked track preferences.",
       },
       {
         time: "12:45 - 13:00",
@@ -698,42 +718,6 @@ export const sponsors: Sponsor[] = [
   { name: "proximata", logo: "/sponsors/proximata.png", website: "https://proximata.io" },
   { name: "Red Bull", logo: "/sponsors/red-bull.png", website: "https://www.redbull.com/at-de" },
   { name: "Club Mate", logo: "/sponsors/club-mate.png", website: "https://www.club-mate.de" },
-];
-
-export const contentConflicts: ContentConflict[] = [
-  {
-    topic: "Participant count",
-    currentSite: "100 builders",
-    builderBase: "max_participants: 180",
-    recommendation: "Use generic copy until the final public capacity is confirmed.",
-  },
-  {
-    topic: "Number of challenges",
-    currentSite: "4 real cases",
-    builderBase: "5 challenge tracks plus team formation",
-    recommendation:
-      "Use five tracks in track-specific sections and avoid the old four-case headline.",
-  },
-  {
-    topic: "Prize pool",
-    currentSite: "10,000+ EUR prize pool",
-    builderBase: "20k EUR+ in cash, projects and API value",
-    recommendation:
-      "Avoid a single top-line prize number until the owner confirms the final claim.",
-  },
-  {
-    topic: "Robo Dog page",
-    currentSite: "HOIV listed as partner only",
-    builderBase: "HOIV Robo Dog track exists but has no published page data",
-    recommendation: "List it as a track with details coming soon; do not create a detail page yet.",
-  },
-  {
-    topic: "Draft placeholders",
-    currentSite: "No equivalent",
-    builderBase: "Apply by Sep 28, empty first-place values, incomplete people fields",
-    recommendation:
-      "Omit placeholder stats from public UI and record incomplete mentor details for review.",
-  },
 ];
 
 export function getTrackDetail(slug: string): TrackDetail | undefined {

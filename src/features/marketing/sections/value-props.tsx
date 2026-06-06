@@ -9,7 +9,7 @@ type Feature = {
 const features: Feature[] = [
   {
     title: "Real challenges from real companies",
-    body: "Four case partners bring problems they actually want solved. Pick your case, get matched with a team, build for 24 hours.",
+    body: "Five case partners bring problems they actually want solved. Pick your case, get matched with a team, build for 24 hours.",
     icon: "/images/mascot/1.png",
   },
   {
@@ -18,7 +18,7 @@ const features: Feature[] = [
     icon: "/images/mascot/2.png",
   },
   {
-    title: "10,000+ EUR prize pool",
+    title: "20,000+ EUR prize pool",
     body: "Track Winners, Overall Winner, and a crowd-voted Community Award. Plus an MIT-licensed GitHub project to take with you.",
     icon: "/images/mascot/3.png",
   },

@@ -36,7 +36,7 @@ const features: Feature[] = [
   },
   {
     title: "Prize pool?",
-    description: "10,000+ EUR total, trophies, Community Award, and an MIT project.",
+    description: "20,000+ EUR total, trophies, Community Award.",
     icon: <ChampionIcon strokeWidth={1.5} />,
   },
   {
