@@ -278,40 +278,45 @@ export const trackDetails: TrackDetail[] = [
         name: "Functional MVP",
         weight: "30%",
         description:
-          "The full loop runs end to end without intervention: cancellation detected, candidate picked, call placed, slot booked.",
-      },
-      {
-        name: "Business impact and feasibility",
-        weight: "25%",
-        description:
-          "The solution has a realistic deployment path and clear value to fonio customers.",
+          "The demo runs end to end with a real outbound call rather than falling back to slides.",
       },
       {
         name: "Technical execution",
-        weight: "20%",
-        description: "Picking logic, race-condition handling, and adapter design are solid.",
+        weight: "25%",
+        description:
+          "Engineering choices would survive production: persistence, error handling, idempotency, and sane architecture.",
       },
       {
-        name: "Problem fit",
+        name: "Problem fit and relevance",
+        weight: "20%",
+        description:
+          "The team understood the real problem - the receptionist's day and the personalization issue - not an easier adjacent one.",
+      },
+      {
+        name: "User experience and design",
         weight: "15%",
-        description: "Consent and operational edge cases are handled as core product concerns.",
+        description:
+          "The receptionist can actually use the dashboard and the owner can read the numbers.",
       },
       {
         name: "Pitch and storytelling",
         weight: "10%",
-        description: "The demo and finalist pitch explain the problem and result clearly.",
+        description: "Four minutes, clear and honest, showing the build rather than slideware.",
       },
     ],
     people: [
       {
-        name: "Marco Caputo",
-        role: "Mentor, fonio - in person Sat 13:00-14:00 and 17:00-18:00, Sun 10:00-11:00",
+        name: "Nicolas Hosp",
+        role: "Jury and mentor, HR at fonio - in person Sat 13:00-14:00 and 17:00-18:00, Sun 10:00-11:00",
       },
       {
-        name: "Nicolas Hosp",
-        role: "Jury and mentor, fonio - in person Sat 13:00-14:00 and 17:00-18:00, Sun 10:00-11:00",
+        name: "Marco Caputo",
+        role: "Mentor, GTM Lead Italy at fonio - in person Sat 13:00-14:00 and 17:00-18:00, Sun 10:00-11:00",
       },
-      { name: "Kim", role: "Mentor, fonio - available on Discord" },
+      {
+        name: "Kim",
+        role: "Tech mentor, Forward Deployment Engineer at fonio - available on Discord",
+      },
     ],
     resources: [
       {
@@ -355,8 +360,9 @@ export const trackDetails: TrackDetail[] = [
       title: "Prize and support",
       items: [
         "EUR 3,000 in hardware plus a paid EUR 7,000 contract for a real techbold case",
+        "A social-media winner story with a techbold board endorsement",
         "Production-grade infrastructure and Linux systems to build on",
-        "Direct line to techbold's Head of AI Engineering on site",
+        "Direct line to techbold's AI engineers on site and on Discord",
       ],
     },
     judging: [
@@ -441,12 +447,12 @@ export const trackDetails: TrackDetail[] = [
       requirements: ["Public GitHub repo", "Up to 3-minute demo video", "Written submission"],
     },
     prizes: {
-      title: "Prize and support",
+      title: "Prizes for the top three teams",
       items: [
-        "EUR 1,000 cash",
-        "Company incorporation through notarity",
-        "Two-month mentorship programme with the founders",
-        "Invite to notarity's open tennis tournament",
+        "1st: EUR 1,000 cash plus a dinner with the notarity founders",
+        "2nd: company incorporation via notarity (GmbH, FlexCo, or OG)",
+        "3rd: an invite to notarity's Open tennis tournament",
+        "All three teams: a standing invite to meet the founders about once a week",
       ],
     },
     judging: [
@@ -474,12 +480,12 @@ export const trackDetails: TrackDetail[] = [
     people: [
       {
         name: "Max Pointinger",
-        role: "Mentor and jury, Head of Product and Co-Founder - available onsite",
+        role: "Mentor and jury, Head of Product, Co-Founder and Developer - available onsite",
       },
-      { name: "Hendrik Böttcher", role: "Mentor, AI Ops - available on Discord" },
+      { name: "Hendrik Böttcher", role: "Mentor, AI Ops - available remotely on Discord" },
       {
         name: "Jakobus Schuster",
-        role: "Mentor, CEO and Co-Founder - available on Discord, partly onsite",
+        role: "Mentor, CEO and Co-Founder - available remotely on Discord",
       },
     ],
     resources: [
@@ -508,7 +514,7 @@ export const trackDetails: TrackDetail[] = [
       title: "Build a glasses-first AI assistant",
       paragraphs: [
         "Most AI assistants still require screens or peripherals. Smart glasses can make assistance available while a user's hands and eyes stay busy.",
-        "Build a visual, voice, or agentic AR interface on top of VisionClaw. The glasses should see or hear context, the user should speak a request, and the system should return a useful response or action.",
+        "Build a visual, voice, or agentic AR interface using Meta's Wearables Device Access Toolkit or VisionClaw. The glasses should see or hear context, the user should speak a request, and the system should return a useful response or action.",
         "A strong demo shows at least two distinct voice-and-vision interactions on real glasses or a virtual emulation. If using OpenClaw, show at least one real action executing.",
       ],
       requirementsTitle: "Submission requirements",
@@ -517,7 +523,7 @@ export const trackDetails: TrackDetail[] = [
     prizes: {
       title: "Prize and support",
       items: [
-        "Three months of office space at HOIV",
+        "One month of office space at HOIV",
         "Immediate builder status at proximata for the winning team",
         "Hands-on access to Meta Ray-Ban glasses in developer mode",
       ],
@@ -549,10 +555,15 @@ export const trackDetails: TrackDetail[] = [
     people: [
       {
         name: "Sviat",
-        role: "Mentor, proximata - AI agentic pipelines, data analysis, ML, and cognitive science - available onsite",
+        role: "Lead mentor, proximata - AI agentic pipelines, data analysis, ML, and cognitive science - available onsite",
       },
     ],
     resources: [
+      {
+        name: "Meta Wearables Device Access Toolkit",
+        description:
+          "Meta's official SDK (developer preview) for direct camera, microphone, and speaker access on the glasses.",
+      },
       {
         name: "VisionClaw framework",
         description:
@@ -561,7 +572,7 @@ export const trackDetails: TrackDetail[] = [
       {
         name: "Meta Ray-Ban glasses",
         description:
-          "Two smart glasses units plus one display unit in developer mode, shared on site.",
+          "Ray-Ban Meta glasses including a Display unit, in developer mode, shared on site.",
       },
       {
         name: "Gemini and OpenClaw",
