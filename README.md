@@ -3,7 +3,7 @@
 Marketing site for **START Hack Vienna '26** — a 24-hour hackathon at HOIV.
 Single-page Next.js 16 app, server-rendered, statically deployed.
 
-## Stack
+## Stacks
 
 - Next.js 16 (App Router) · React 19 · TypeScript strict
 - Tailwind CSS v4 (CSS-first config in `globals.css`)
